@@ -15,7 +15,6 @@
  */
 
 package uk.gov.hmrc.sdecstridefrontend.controllers
-
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
@@ -25,21 +24,21 @@ import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.FakeRequest
 import play.api.test.Helpers.*
 
-class HelloWorldControllerSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite:
+class WorkspaceControllerSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite:
 
   override def fakeApplication(): Application =
     new GuiceApplicationBuilder()
       .build()
 
-  private val fakeRequest = FakeRequest("GET", "/")
-  private val controller  = app.injector.instanceOf[HelloWorldController]
+  private val fakeRequest = FakeRequest("GET", "/sdec-stride-frontend")
+  private val controller  = app.injector.instanceOf[WorkspaceController]
 
   "GET /" should:
     "return 200" in:
-      val result = controller.helloWorld(fakeRequest)
+      val result = controller.onPageLoad(fakeRequest)
       status(result) shouldBe Status.OK
 
     "return HTML" in:
-      val result = controller.helloWorld(fakeRequest)
+      val result = controller.onPageLoad(fakeRequest)
       contentType(result) shouldBe Some("text/html")
       charset(result)     shouldBe Some("utf-8")
