@@ -1,8 +1,29 @@
-site.continue = Continue
-
 workspace.title = Workspace
 workspace.heading = Workspace
 workspace.button.createthread = Create new thread
 
 recipientdetails.title = Recipient Details
 recipientdetails.heading = Recipient Details
+
+site.back = Back
+site.remove = Remove
+site.change = Change
+site.no = No
+site.yes = Yes
+site.continue = Continue
+site.start = Start now
+site.startAgain = Start again
+site.signIn = Sign in
+site.govuk = GOV.UK
+
+threadType.title = Thread Type
+threadType.caption = Create new thread
+threadType.heading = What do you want to do?
+threadType.option.send = Send file(s)
+threadType.option.send.hint = You must include at least one file and a message. The recipient cannot respond.
+threadType.option.request = Request file(s)
+threadType.option.request.hint = You must include a message and the recipient must respond with their file(s) and a message.
+threadType.option.sendAndRequest = Send and request file(s)
+threadType.option.sendAndRequest.hint = You must include a file and a message and the recipient must respond with their file(s) and a message.
+
+threadType.error.threadType.required = Select what you need to do
