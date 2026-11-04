@@ -16,22 +16,52 @@
 
 @import uk.gov.hmrc.sdecstridefrontend.config.AppConfig
 @import uk.gov.hmrc.hmrcfrontend.views.html.helpers.HmrcStandardPage
+@import uk.gov.hmrc.govukfrontend.views.viewmodels.backlink.BackLink
+@import uk.gov.hmrc.hmrcfrontend.views.viewmodels.internalheader.InternalHeader
 @import uk.gov.hmrc.hmrcfrontend.views.viewmodels.hmrcstandardpage.HmrcStandardPageParams
+@import views.html.helper.CSPNonce
 
 @this(
-  appConfig: AppConfig,
-  hmrcStandardPage: HmrcStandardPage
+        govukBackLink: GovukBackLink,
+        hmrcScripts: HmrcScripts,
+        hmrcInternalHead: HmrcInternalHead,
+        autocompleteJavascript : HmrcAccessibleAutocompleteJavascript,
+        hmrcReportTechnicalIssueHelper: HmrcReportTechnicalIssueHelper,
+        govukLayout: GovukLayout,
 )
 
-@(pageTitle: Option[String] = None)(contentBlock: Html)(implicit request: RequestHeader, messages: Messages)
+@(pageTitle: String, showBackLink: Boolean = true)(contentBlock: Html)(implicit request: RequestHeader, messages: Messages)
 
-@hmrcStandardPage(
-  HmrcStandardPageParams(
-    pageTitle = pageTitle,
-    isWelshTranslationAvailable = appConfig.welshLanguageSupportEnabled
-  )
-)(contentBlock)
+@head = {
 
-@{
-    //$COVERAGE-OFF$
+    @hmrcInternalHead()
+    @hmrcScripts()
+    @autocompleteJavascript()
+    <script @{CSPNonce.attr} src='@controllers.routes.Assets.versioned("javascripts/jquery-3.6.0.min.js")'></script>
+    <script @{CSPNonce.attr} src='@controllers.routes.Assets.versioned("javascripts/application.min.js")'></script>
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/application.css")" type="text/css">
+
 }
+
+@header = {
+
+}
+
+@beforeContent = {
+    @if(showBackLink) {
+        @govukBackLink(BackLink.mimicsBrowserBackButtonViaJavaScript)
+    }
+}
+
+@content = {
+    @contentBlock
+    @hmrcReportTechnicalIssueHelper()
+}
+
+@govukLayout(
+    pageTitle = Some(pageTitle),
+    headBlock = Some(head),
+    headerBlock = Some(header),
+    beforeContentBlock = Some(beforeContent),
+    mainContentLayout = Some((content: Html) => content)
+)(content)
