@@ -25,7 +25,7 @@ import play.api.i18n.MessagesApi
 import play.api.test.FakeRequest
 import uk.gov.hmrc.sdecstridefrontend.views.html.WorkspaceView
 
-class WorkspaceViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite:
+class WorkspaceViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
   private val view     = app.injector.instanceOf[WorkspaceView]
   private val request  = FakeRequest("GET", "/sdec-stride-frontend")
@@ -48,3 +48,5 @@ class WorkspaceViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSui
       buttons.size()               shouldBe 1
       buttons.first().text()       shouldBe "Create New Thread"
       buttons.first().attr("href") shouldBe "/sdec-stride-frontend/create-thread/recipient-details"
+
+}
