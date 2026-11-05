@@ -28,8 +28,10 @@ class WorkspaceController @Inject() (
   mcc:           MessagesControllerComponents,
   workspaceView: WorkspaceView
 ) extends FrontendController(mcc)
-    with I18nSupport:
+    with I18nSupport {
 
   def onPageLoad: Action[AnyContent] =
     Action: request =>
       Ok(workspaceView()(using request, request2Messages(request)))
+
+}
