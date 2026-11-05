@@ -24,7 +24,7 @@ import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.FakeRequest
 import play.api.test.Helpers.*
 
-class WorkspaceControllerSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite:
+class WorkspaceControllerSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
   override def fakeApplication(): Application =
     new GuiceApplicationBuilder()
@@ -42,3 +42,5 @@ class WorkspaceControllerSpec extends AnyWordSpec with Matchers with GuiceOneApp
       val result = controller.onPageLoad(fakeRequest)
       contentType(result) shouldBe Some("text/html")
       charset(result)     shouldBe Some("utf-8")
+
+}

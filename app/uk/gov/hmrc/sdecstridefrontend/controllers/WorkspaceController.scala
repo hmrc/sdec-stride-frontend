@@ -30,6 +30,6 @@ class WorkspaceController @Inject() (
 ) extends FrontendController(mcc)
     with I18nSupport:
 
-  val onPageLoad: Action[AnyContent] =
+  def onPageLoad: Action[AnyContent] =
     Action: request =>
       Ok(workspaceView()(using request, request2Messages(request)))
