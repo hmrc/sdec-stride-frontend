@@ -28,8 +28,10 @@ class RecipientDetailsController @Inject() (
   mcc:                  MessagesControllerComponents,
   recipientDetailsView: RecipientDetailsView
 ) extends FrontendController(mcc)
-    with I18nSupport:
+    with I18nSupport {
 
   val onPageLoad: Action[AnyContent] =
     Action: request =>
       Ok(recipientDetailsView()(using request, request2Messages(request)))
+
+}
