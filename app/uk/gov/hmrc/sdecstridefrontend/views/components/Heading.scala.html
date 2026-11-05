@@ -1,5 +1,5 @@
 @*
- * Copyright 2026 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,8 @@
  * limitations under the License.
  *@
 
-@this(layout: Layout)
+@this()
 
-@()(implicit request: RequestHeader, messages: Messages)
+@(message: String, classes: String = "govuk-heading-xl", tier: String = "h1")
 
-@layout(pageTitle = Some("sdec-stride-frontend")) {
-    <h1 class="govuk-heading-xl">sdec-stride-frontend</h1>
-    <p class="govuk-body">@{messages("service.text")}</p>
-}
-
-@{
-    //$COVERAGE-OFF$
-}
+<@tier class="@classes">@message</@tier.strip()>

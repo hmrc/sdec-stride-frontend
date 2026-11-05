@@ -16,18 +16,22 @@
 
 package uk.gov.hmrc.sdecstridefrontend.controllers
 
+import play.api.i18n.I18nSupport
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import uk.gov.hmrc.sdecstridefrontend.views.html.HelloWorldPage
+import uk.gov.hmrc.sdecstridefrontend.views.html.WorkspaceView
 
 import javax.inject.{Inject, Singleton}
 
 @Singleton
-class HelloWorldController @Inject() (
-  mcc:            MessagesControllerComponents,
-  helloWorldPage: HelloWorldPage
-) extends FrontendController(mcc):
+class WorkspaceController @Inject() (
+  mcc:           MessagesControllerComponents,
+  workspaceView: WorkspaceView
+) extends FrontendController(mcc)
+    with I18nSupport {
 
-  val helloWorld: Action[AnyContent] =
-    Action:
-      implicit request => Ok(helloWorldPage())
+  def onPageLoad: Action[AnyContent] =
+    Action: request =>
+      Ok(workspaceView()(using request, request2Messages(request)))
+
+}
