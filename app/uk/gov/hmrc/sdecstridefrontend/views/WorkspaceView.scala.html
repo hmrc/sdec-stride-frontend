@@ -21,7 +21,7 @@
 
 @()(implicit request: RequestHeader, messages: Messages)
 
-@layout(pageTitle = Some(messages("workspace.title"))) {
+@layout(pageTitle = messages("workspace.title")) {
     @heading(messages("workspace.heading"))
 
     @govukButton(Button(
