@@ -34,7 +34,8 @@ class RecipientDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAp
   private def page(): Document =
     Jsoup.parse(view()(using request, messages).body)
 
-  "RecipientDetailsView" should:
+  "RecipientDetailsView" should {
+
     "have the Recipient Details page title" in:
       page().title() shouldBe "Recipient Details"
 
@@ -48,5 +49,7 @@ class RecipientDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAp
       buttons.size()               shouldBe 1
       buttons.first().text()       shouldBe "Continue"
       buttons.first().attr("href") shouldBe "/sdec-stride-frontend/create-thread/thread-type"
+
+  }
 
 }
