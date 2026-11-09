@@ -5,16 +5,9 @@ workspace.button.createthread = Create new thread
 recipientdetails.title = Recipient Details
 recipientdetails.heading = Recipient Details
 
-site.back = Back
-site.remove = Remove
-site.change = Change
 site.no = No
 site.yes = Yes
 site.continue = Continue
-site.start = Start now
-site.startAgain = Start again
-site.signIn = Sign in
-site.govuk = GOV.UK
 
 threadType.title = Thread Type
 threadType.caption = Create new thread

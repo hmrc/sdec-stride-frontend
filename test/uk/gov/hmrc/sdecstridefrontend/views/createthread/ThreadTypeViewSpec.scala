@@ -28,6 +28,8 @@ import uk.gov.hmrc.sdecstridefrontend.forms.ThreadTypeFormProvider
 import uk.gov.hmrc.sdecstridefrontend.models.ThreadType
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.ThreadTypeView
 
+import scala.jdk.CollectionConverters.*
+
 class ThreadTypeViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
   private val view         = app.injector.instanceOf[ThreadTypeView]
@@ -53,7 +55,21 @@ class ThreadTypeViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
     "show a Radio Selection for choosing the Thread Type" in:
       val main   = page().getElementById("main-content")
       val radios = main.getElementsByClass("govuk-radios")
-      radios.first().text() shouldBe "Send file(s) Request file(s) Send and request file(s)"
+      radios.size() shouldBe 1
+
+      main.getElementsByClass("govuk-radios__label").eachText().asScala.toSeq shouldBe Seq(
+        "Send file(s)",
+        "Request file(s)",
+        "Send and request file(s)"
+      )
+
+    "show a hint under each radio option" in:
+      val main = page().getElementById("main-content")
+      main.getElementsByClass("govuk-radios__hint").eachText().asScala.toSeq shouldBe Seq(
+        "You must include at least one file and a message. The recipient cannot respond.",
+        "You must include a message and the recipient must respond with their file(s) and a message.",
+        "You must include a file and a message and the recipient must respond with their file(s) and a message."
+      )
 
     "show a Continue button" in:
       val main   = page().getElementById("main-content")
