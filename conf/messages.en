@@ -1,3 +1,8 @@
+site.continue = Continue
+
 workspace.title = Workspace
 workspace.heading = Workspace
-workspace.button.createThread = Create New Thread
+workspace.button.createthread = Create new thread
+
+recipientdetails.title = Recipient Details
+recipientdetails.heading = Recipient Details
