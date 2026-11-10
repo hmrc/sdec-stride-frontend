@@ -18,11 +18,12 @@ package uk.gov.hmrc.sdecstridefrontend.views.createthread
 
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.data.Form
-import play.api.i18n.{Messages, MessagesApi}
+import play.api.i18n.MessagesApi
 import play.api.test.FakeRequest
 import uk.gov.hmrc.sdecstridefrontend.forms.ThreadTypeFormProvider
 import uk.gov.hmrc.sdecstridefrontend.models.ThreadType
@@ -37,22 +38,23 @@ class ThreadTypeViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
   private val messages     = app.injector.instanceOf[MessagesApi].preferred(request)
   private val formProvider = app.injector.instanceOf[ThreadTypeFormProvider]
 
-  private def form: Form[ThreadType] =
-    given Messages = messages
-    formProvider()
+  private def form: Form[ThreadType] = formProvider()
 
   private def page(): Document =
     Jsoup.parse(view(form)(using request, messages).body)
 
-  "ThreadTypeView" should:
-    "have the Thread Type page title" in:
-      page().title() shouldBe "Thread Type"
+  "ThreadTypeView" should {
+    "have a title" in {
+      page().title() shouldBe "What do you want to do?"
+    }
 
-    "show a 'What do you want to do?' h1" in:
-      val main = page().getElementById("main-content")
-      main.getElementsByClass("govuk-heading-l").text() shouldBe "What do you want to do?"
+    "have a unique H1 heading" in {
+      val h1Elements: Elements = page().getElementsByTag("h1")
+      h1Elements.size() shouldBe 1
+      h1Elements.text() shouldBe "What do you want to do?"
+    }
 
-    "show a Radio Selection for choosing the Thread Type" in:
+    "show a Radio Selection for choosing the Thread Type" in {
       val main   = page().getElementById("main-content")
       val radios = main.getElementsByClass("govuk-radios")
       radios.size() shouldBe 1
@@ -62,18 +64,22 @@ class ThreadTypeViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
         "Request file(s)",
         "Send and request file(s)"
       )
+    }
 
-    "show a hint under each radio option" in:
+    "show a hint under each radio option" in {
       val main = page().getElementById("main-content")
       main.getElementsByClass("govuk-radios__hint").eachText().asScala.toSeq shouldBe Seq(
         "You must include at least one file and a message. The recipient cannot respond.",
         "You must include a message and the recipient must respond with their file(s) and a message.",
         "You must include a file and a message and the recipient must respond with their file(s) and a message."
       )
+    }
 
-    "show a Continue button" in:
+    "show a Continue button" in {
       val main   = page().getElementById("main-content")
       val button = main.getElementsByClass("govuk-button")
       button.size()         shouldBe 1
       button.first().text() shouldBe "Continue"
+    }
+  }
 }

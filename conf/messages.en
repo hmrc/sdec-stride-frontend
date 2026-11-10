@@ -9,14 +9,14 @@ site.no = No
 site.yes = Yes
 site.continue = Continue
 
-threadType.title = Thread Type
-threadType.caption = Create new thread
-threadType.heading = What do you want to do?
-threadType.option.send = Send file(s)
-threadType.option.send.hint = You must include at least one file and a message. The recipient cannot respond.
-threadType.option.request = Request file(s)
-threadType.option.request.hint = You must include a message and the recipient must respond with their file(s) and a message.
-threadType.option.sendAndRequest = Send and request file(s)
-threadType.option.sendAndRequest.hint = You must include a file and a message and the recipient must respond with their file(s) and a message.
+heading.what_do_you_want_to_do = What do you want to do?
+caption.create_new_thread = Create new thread
 
-threadType.error.threadType.required = Select what you need to do
+label.send_files = Send file(s)
+label.request_files = Request file(s)
+label.send_and_request_files = Send and request file(s)
+label.you_must_include_at_least_one_file_and_a_message_the_recipient_ = You must include at least one file and a message. The recipient cannot respond.
+label.you_must_include_a_message_and_the_recipient_must_ = You must include a message and the recipient must respond with their file(s) and a message.
+label.you_must_include_a_file_and_a_message_and_the_recipient_ = You must include a file and a message and the recipient must respond with their file(s) and a message.
+
+error.select_what_you_need_to_do = Select what you need to do

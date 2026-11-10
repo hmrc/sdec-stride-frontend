@@ -18,7 +18,7 @@ package uk.gov.hmrc.sdecstridefrontend.controllers.createthread
 
 import play.api.Logging
 import play.api.data.Form
-import play.api.i18n.{I18nSupport, Messages, MessagesApi}
+import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.*
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import uk.gov.hmrc.sdecstridefrontend.forms.ThreadTypeFormProvider
@@ -31,37 +31,31 @@ import scala.concurrent.Future
 @Singleton
 class ThreadTypeController @Inject() (
   override val messagesApi: MessagesApi,
-  formProvider:             ThreadTypeFormProvider,
+  threadTypeFormProvider:   ThreadTypeFormProvider,
   mcc:                      MessagesControllerComponents,
   threadTypeView:           ThreadTypeView
 ) extends FrontendController(mcc)
     with I18nSupport
     with Logging {
 
-  private def form(using request: RequestHeader): Form[ThreadType] = {
-    given Messages = messagesApi.preferred(request)
-    formProvider()
-  }
+  private val threadTypeForm: Form[ThreadType] = threadTypeFormProvider()
 
   def onPageLoad: Action[AnyContent] =
     Action: request =>
       given Request[AnyContent] = request
-      Ok(threadTypeView(form))
+      Ok(threadTypeView(threadTypeForm))
 
   def onSubmit: Action[AnyContent] =
     logger.info(s"Handling Thread Type Submission")
     Action.async: request =>
       given Request[AnyContent] = request
-      processForm()
-
-  private def processForm()(using Request[AnyContent]): Future[Result] =
-    form
-      .bindFromRequest()
-      .fold(
-        formWithErrors =>
-          Future.successful(
-            BadRequest(threadTypeView(formWithErrors))
-          ),
-        _ => Future.successful(Redirect(routes.ThreadTypeController.onPageLoad()))
-      )
+      threadTypeForm
+        .bindFromRequest()
+        .fold(
+          formWithErrors =>
+            Future.successful(
+              BadRequest(threadTypeView(formWithErrors))
+            ),
+          _ => Future.successful(Redirect(routes.ThreadTypeController.onPageLoad()))
+        )
 }

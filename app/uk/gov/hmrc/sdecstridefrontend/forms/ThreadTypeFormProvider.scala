@@ -27,10 +27,10 @@ class ThreadTypeFormProvider @Inject() extends Mappings {
 
   def apply(): Form[ThreadType] = Form(
     mapping(
-      "threadType" -> enumerable[ThreadTypeOptions](requiredKey = "threadType.error.threadType.required")
+      "threadType" -> enumerable[ThreadTypeOptions](requiredKey = "error.select_what_you_need_to_do")
     )(ThreadType.apply)(threadType =>
       Some(
-        threadType.threadType
+        threadType.option
       )
     )
   )

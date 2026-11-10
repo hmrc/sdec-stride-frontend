@@ -22,13 +22,25 @@ import uk.gov.hmrc.govukfrontend.views.viewmodels.content.Text
 import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
 import uk.gov.hmrc.sdecstridefrontend.viewmodels.govuk.all.HintViewModel
 
-enum ThreadTypeOptions(val messageKey: String) {
-  case Send extends ThreadTypeOptions("threadType.option.send")
-  case Request extends ThreadTypeOptions("threadType.option.request")
-  case SendAndRequest extends ThreadTypeOptions("threadType.option.sendAndRequest")
+enum ThreadTypeOptions(val messageKey: String, val hintKey: String) {
+  case Send
+      extends ThreadTypeOptions(
+        "label.send_files",
+        "label.you_must_include_at_least_one_file_and_a_message_the_recipient_"
+      )
+  case Request
+      extends ThreadTypeOptions(
+        "label.request_files",
+        "label.you_must_include_a_message_and_the_recipient_must_"
+      )
+  case SendAndRequest
+      extends ThreadTypeOptions(
+        "label.send_and_request_files",
+        "label.you_must_include_a_file_and_a_message_and_the_recipient_"
+      )
 }
 
-object ThreadTypeOptions:
+object ThreadTypeOptions {
 
   def options(using messages: Messages): Seq[RadioItem] =
     values.toSeq.zipWithIndex.map { (option, index) =>
@@ -36,7 +48,7 @@ object ThreadTypeOptions:
         id = Some(if index == 0 then "threadType" else s"threadType_$index"),
         value = Some(option.toString),
         content = Text(messages(option.messageKey)),
-        hint = Some(HintViewModel(Text(messages(s"${option.messageKey}.hint"))))
+        hint = Some(HintViewModel(Text(messages(option.hintKey))))
       )
     }
 
@@ -57,3 +69,4 @@ object ThreadTypeOptions:
     },
     Writes(o => JsString(o.toString))
   )
+}
