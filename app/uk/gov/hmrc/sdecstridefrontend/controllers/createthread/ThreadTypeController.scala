@@ -38,7 +38,7 @@ class ThreadTypeController @Inject() (
     with I18nSupport
     with Logging {
 
-  private def form(implicit request: RequestHeader): Form[ThreadType] = {
+  private def form(using request: RequestHeader): Form[ThreadType] = {
     given Messages = messagesApi.preferred(request)
     formProvider()
   }

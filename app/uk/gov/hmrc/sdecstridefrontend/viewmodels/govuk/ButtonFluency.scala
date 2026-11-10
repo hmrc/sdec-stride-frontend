@@ -31,7 +31,7 @@ trait ButtonFluency {
       )
   }
 
-  implicit class FluentButton(button: Button) {
+  extension (button: Button)
 
     def asLink(href: String): Button =
       button.copy(
@@ -52,7 +52,7 @@ trait ButtonFluency {
     def withAttribute(attribute: (String, String)): Button =
       button.copy(attributes = button.attributes + attribute)
 
-    def disabled(): Button =
+    def asDisabled(): Button =
       button.copy(disabled = true)
 
     def preventingDoubleClick(): Button =
@@ -66,5 +66,4 @@ trait ButtonFluency {
 
     def asWarningButton(): Button =
       withCssClass("govuk-button--warning")
-  }
 }

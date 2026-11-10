@@ -23,5 +23,5 @@ final case class ThreadType(
 )
 
 object ThreadType {
-  implicit val format: OFormat[ThreadType] = Json.format[ThreadType]
+  given format: OFormat[ThreadType] = Json.format[ThreadType]
 }

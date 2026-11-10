@@ -47,7 +47,7 @@ trait Mappings extends Formatters with Constraints {
     requiredKey: String = "error.required",
     invalidKey:  String = "error.invalid",
     args:        Seq[String] = Seq.empty
-  )(implicit ev: Enumerable[A]): FieldMapping[A] =
+  )(using ev: Enumerable[A]): FieldMapping[A] =
     of(enumerableFormatter[A](requiredKey, invalidKey, args))
 
 }

@@ -36,7 +36,7 @@ trait RadiosFluency {
       field:  Field,
       items:  Seq[RadioItem],
       legend: Legend
-    )(implicit messages: Messages): Radios =
+    )(using messages: Messages): Radios =
       apply(
         field = field,
         items = items,
@@ -47,7 +47,7 @@ trait RadiosFluency {
       field:    Field,
       items:    Seq[RadioItem],
       fieldset: Fieldset
-    )(implicit messages: Messages): Radios =
+    )(using messages: Messages): Radios =
       Radios(
         fieldset = Some(fieldset),
         name = field.name,
@@ -58,7 +58,7 @@ trait RadiosFluency {
     def yesNo(
       field:  Field,
       legend: Legend
-    )(implicit messages: Messages): Radios =
+    )(using messages: Messages): Radios =
       yesNo(
         field = field,
         fieldset = FieldsetViewModel(legend)
@@ -67,7 +67,7 @@ trait RadiosFluency {
     def yesNo(
       field:    Field,
       fieldset: Fieldset
-    )(implicit messages: Messages): Radios = {
+    )(using messages: Messages): Radios = {
 
       val items = Seq(
         RadioItem(
@@ -93,7 +93,7 @@ trait RadiosFluency {
       field:           Field,
       legend:          Legend,
       conditionalHtml: Html
-    )(implicit messages: Messages): Radios = {
+    )(using messages: Messages): Radios = {
 
       val items = Seq(
         RadioItem(
@@ -117,7 +117,7 @@ trait RadiosFluency {
     }
   }
 
-  implicit class FluentRadios(radios: Radios) {
+  extension (radios: Radios)
 
     def withHint(hint: Hint): Radios =
       radios.copy(hint = Some(hint))
@@ -136,5 +136,4 @@ trait RadiosFluency {
 
     def inline(): Radios =
       radios.withCssClass("govuk-radios--inline")
-  }
 }
