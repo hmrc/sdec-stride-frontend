@@ -36,10 +36,10 @@ class SessionRepositorySpec
   private val clock = Clock.fixed(Instant.now(), ZoneOffset.UTC)
 
   override protected val databaseName: String = "test-sdec-stride-frontend-SessionRepositorySpec"
-  
+
   override protected val repository: SessionRepository =
     SessionRepository(mongoComponent, AppConfig(Configuration("mongodb.timeToLiveInSeconds" -> 900)), clock)
-  
+
   "SessionRepository" should {
     "save and read back answers" in {
       repository.set(UserAnswers("id1")).futureValue
