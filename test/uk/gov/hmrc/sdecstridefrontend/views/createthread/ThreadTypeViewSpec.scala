@@ -43,15 +43,17 @@ class ThreadTypeViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
   private def page(): Document =
     Jsoup.parse(view(form)(using request, messages).body)
 
+  val pageTitle = "What do you want to do?"
+
   "ThreadTypeView" should {
     "have a title" in {
-      page().title() shouldBe "What do you want to do?"
+      page().title() shouldBe s"$pageTitle - sdec-stride-frontend - GOV.UK"
     }
 
     "have a unique H1 heading" in {
       val h1Elements: Elements = page().getElementsByTag("h1")
       h1Elements.size() shouldBe 1
-      h1Elements.text() shouldBe "What do you want to do?"
+      h1Elements.text() shouldBe pageTitle
     }
 
     "show a Radio Selection for choosing the Thread Type" in {
