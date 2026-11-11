@@ -43,11 +43,12 @@ class ThreadTypeViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
   private def page(): Document =
     Jsoup.parse(view(form)(using request, messages).body)
 
-  val pageTitle = "What do you want to do?"
+  val pageTitle   = "What do you want to do?"
+  val serviceName = "sdec-stride-frontend"
 
   "ThreadTypeView" should {
     "have a title" in {
-      page().title() shouldBe s"$pageTitle - sdec-stride-frontend - GOV.UK"
+      page().title() shouldBe s"$pageTitle - $serviceName - GOV.UK"
     }
 
     "have a unique H1 heading" in {
@@ -57,11 +58,9 @@ class ThreadTypeViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
     }
 
     "show a Radio Selection for choosing the Thread Type" in {
-      val main   = page().getElementById("main-content")
-      val radios = main.getElementsByClass("govuk-radios")
-      radios.size() shouldBe 1
+      page().select("#main-content .govuk-radios").size() shouldBe 1
 
-      main.getElementsByClass("govuk-radios__label").eachText().asScala.toSeq shouldBe Seq(
+      page().select("#main-content .govuk-radios__label").eachText().asScala.toSeq shouldBe Seq(
         "Send file(s)",
         "Request file(s)",
         "Send and request file(s)"
@@ -69,8 +68,7 @@ class ThreadTypeViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
     }
 
     "show a hint under each radio option" in {
-      val main = page().getElementById("main-content")
-      main.getElementsByClass("govuk-radios__hint").eachText().asScala.toSeq shouldBe Seq(
+      page().select("#main-content .govuk-radios__hint").eachText().asScala.toSeq shouldBe Seq(
         "You must include at least one file and a message. The recipient cannot respond.",
         "You must include a message and the recipient must respond with their file(s) and a message.",
         "You must include a file and a message and the recipient must respond with their file(s) and a message."
@@ -78,10 +76,10 @@ class ThreadTypeViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
     }
 
     "show a Continue button" in {
-      val main   = page().getElementById("main-content")
-      val button = main.getElementsByClass("govuk-button")
-      button.size()         shouldBe 1
-      button.first().text() shouldBe "Continue"
+      val button = page().select("#main-content .govuk-button")
+      button.size()               shouldBe 1
+      button.first().text()       shouldBe "Continue"
+      button.first().attr("type") shouldBe "submit"
     }
   }
 }

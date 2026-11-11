@@ -12,8 +12,8 @@ workspace.button.createthread = Create new thread
 recipientdetails.title = Recipient Details
 recipientdetails.heading = Recipient Details
 
-heading.what_do_you_want_to_do = What do you want to do?
-caption.create_new_thread = Create new thread
+label.what_do_you_want_to_do = What do you want to do?
+label.create_new_thread = Create new thread
 
 label.send_files = Send file(s)
 label.request_files = Request file(s)

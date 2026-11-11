@@ -30,7 +30,7 @@
 
 @(form: Form[ThreadType])(implicit request: Request[_], messages: Messages)
 
-@layout(pageTitle = title(form, messages("heading.what_do_you_want_to_do"))) {
+@layout(pageTitle = title(form, messages("label.what_do_you_want_to_do"))) {
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
 
@@ -39,8 +39,8 @@
                     ErrorSummaryViewModel(form))
             }
 
-            <span class="govuk-caption-l">@messages("caption.create_new_thread")</span>
-            <h1 class="govuk-heading-l">@messages("heading.what_do_you_want_to_do")</h1>
+            <span class="govuk-caption-l">@messages("label.create_new_thread")</span>
+            <h1 class="govuk-heading-l">@messages("label.what_do_you_want_to_do")</h1>
 
             @formHelper(action = uk.gov.hmrc.sdecstridefrontend.controllers.createthread.routes.ThreadTypeController.onSubmit()) {
 
