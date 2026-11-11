@@ -30,7 +30,7 @@
 
 @(form: Form[ThreadType])(implicit request: Request[_], messages: Messages)
 
-@layout(pageTitle = messages("heading.what_do_you_want_to_do")) {
+@layout(pageTitle = title(form, messages("heading.what_do_you_want_to_do"))) {
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
 

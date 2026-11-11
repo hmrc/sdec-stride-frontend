@@ -1,13 +1,16 @@
+service.name = sdec-stride-frontend
+
+site.no = No
+site.yes = Yes
+site.continue = Continue
+site.govuk = GOV.UK
+
 workspace.title = Workspace
 workspace.heading = Workspace
 workspace.button.createthread = Create new thread
 
 recipientdetails.title = Recipient Details
 recipientdetails.heading = Recipient Details
-
-site.no = No
-site.yes = Yes
-site.continue = Continue
 
 heading.what_do_you_want_to_do = What do you want to do?
 caption.create_new_thread = Create new thread

@@ -22,6 +22,7 @@ lazy val microservice = Project("sdec-stride-frontend", file("."))
       "uk.gov.hmrc.hmrcfrontend.views.html.components._",
       "uk.gov.hmrc.hmrcfrontend.views.html.helpers._",
       "uk.gov.hmrc.hmrcfrontend.views.config._",
+      "uk.gov.hmrc.sdecstridefrontend.views.ViewUtils._",
       "uk.gov.hmrc.sdecstridefrontend.viewmodels.govuk.all._",
       "controllers.routes._"
     ),
