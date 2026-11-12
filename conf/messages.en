@@ -1,8 +1,7 @@
-site.continue = Continue
+label.continue = Continue
 
-workspace.title = Workspace
-workspace.heading = Workspace
-workspace.button.createthread = Create new thread
+label.workspace = Workspace
 
-recipientdetails.title = Recipient Details
-recipientdetails.heading = Recipient Details
+label.create_new_thread = Create new thread
+
+label.recipient_details = Recipient details
