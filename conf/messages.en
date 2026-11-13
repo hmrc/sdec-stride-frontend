@@ -1,3 +1,13 @@
+service.name = Secure Document Exchange
+service.text = Secure Document Exchange
+
+site.govuk = GOV.UK
+
+error.title.prefix = Error:
+
+insufficient.roles.header = Insufficient Role
+insufficient.roles.body = You do not have a role defined for access to this service
+
 workspace.title = Workspace
 workspace.heading = Workspace
 workspace.button.createThread = Create New Thread
