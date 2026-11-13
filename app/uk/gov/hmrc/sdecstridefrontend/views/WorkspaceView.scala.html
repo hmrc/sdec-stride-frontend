@@ -23,11 +23,11 @@
 
 @()(implicit request: RequestHeader, messages: Messages)
 
-@layout(pageTitle = messages("workspace.title"), showBackLink = false) {
-    @heading(messages("workspace.heading"))
+@layout(pageTitle = messages("label.workspace"), showBackLink = false) {
+    @heading(messages("label.workspace"))
 
     @govukButton(Button(
-        content = Text(messages("workspace.button.createthread")),
+        content = Text(messages("label.create_new_thread")),
         href = Some(RecipientDetailsController.onPageLoad.url)
     ))
 }
