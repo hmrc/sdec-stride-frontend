@@ -1,2 +1,1 @@
-service.name = sdec-stride-frontend
-service.text = Dyma'ch gwasanaeth newydd
+label.sdec_stride_frontend = sdec-stride-frontend
