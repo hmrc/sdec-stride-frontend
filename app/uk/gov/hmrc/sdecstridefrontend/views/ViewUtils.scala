@@ -32,7 +32,7 @@ object ViewUtils {
   def titleNoForm(title: String, section: Option[String] = None)(using
     messages: Messages
   ): String =
-    s"${messages(title)} - ${section.fold("")(messages(_) + " - ")}${messages("service.name")} - ${messages("site.govuk")}"
+    s"${messages(title)} - ${section.fold("")(messages(_) + " - ")}${messages("label.sdec_stride_frontend")} - ${messages("label.govuk")}"
 
   def errorPrefix(form: Form[?])(using messages: Messages): String =
     if form.hasErrors || form.hasGlobalErrors then messages("error.title.prefix")

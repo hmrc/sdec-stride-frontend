@@ -1,19 +1,17 @@
-service.name = sdec-stride-frontend
+label.sdec_stride_frontend = sdec-stride-frontend
 
-site.no = No
-site.yes = Yes
-site.continue = Continue
-site.govuk = GOV.UK
+label.continue = Continue
+label.yes = Yes
+label.no = No
+label.govuk = GOV.UK
 
-workspace.title = Workspace
-workspace.heading = Workspace
-workspace.button.createthread = Create new thread
+label.workspace = Workspace
 
-recipientdetails.title = Recipient Details
-recipientdetails.heading = Recipient Details
+label.create_new_thread = Create new thread
+
+label.recipient_details = Recipient details
 
 label.what_do_you_want_to_do = What do you want to do?
-label.create_new_thread = Create new thread
 
 label.send_files = Send file(s)
 label.request_files = Request file(s)
@@ -22,4 +20,4 @@ label.you_must_include_at_least_one_file_and_a_message_the_recipient_ = You must
 label.you_must_include_a_message_and_the_recipient_must_ = You must include a message and the recipient must respond with their file(s) and a message.
 label.you_must_include_a_file_and_a_message_and_the_recipient_ = You must include a file and a message and the recipient must respond with their file(s) and a message.
 
-error.select_what_you_need_to_do = Select what you need to do
+label.select_what_you_need_to_do = Select what you need to do
