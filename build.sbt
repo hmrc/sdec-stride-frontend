@@ -5,7 +5,6 @@ ThisBuild / majorVersion := 0
 ThisBuild / scalaVersion := "3.3.7"
 ThisBuild / scalacOptions += "-Wconf:msg=Flag.*repeatedly:s"
 ThisBuild / semanticdbEnabled := true
-ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 
 lazy val microservice = Project("sdec-stride-frontend", file("."))
   .enablePlugins(play.sbt.PlayScala, SbtDistributablesPlugin)
@@ -24,7 +23,7 @@ lazy val microservice = Project("sdec-stride-frontend", file("."))
       "uk.gov.hmrc.hmrcfrontend.views.config._",
       "controllers.routes._"
     ),
-    PlayKeys.playDefaultPort := 5500,
+    PlayKeys.playDefaultPort := 4000,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
     scalacOptions += "-Wconf:src=routes/.*:s",
     scalacOptions += "-Wconf:msg=unused import&src=html/.*:s",
