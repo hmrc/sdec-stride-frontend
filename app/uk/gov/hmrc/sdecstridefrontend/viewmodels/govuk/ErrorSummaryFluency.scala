@@ -46,7 +46,7 @@ trait ErrorSummaryFluency {
     }
   }
 
-  extension (errorSummary: ErrorSummary)
+  extension (errorSummary: ErrorSummary) {
 
     def withDescription(description: Content): ErrorSummary =
       errorSummary.copy(description = description)
@@ -56,4 +56,5 @@ trait ErrorSummaryFluency {
 
     def withAttribute(attribute: (String, String)): ErrorSummary =
       errorSummary.copy(attributes = errorSummary.attributes + attribute)
+  }
 }

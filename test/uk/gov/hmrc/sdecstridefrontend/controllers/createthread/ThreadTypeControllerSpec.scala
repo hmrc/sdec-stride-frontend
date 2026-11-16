@@ -25,7 +25,7 @@ import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.FakeRequest
 import play.api.test.Helpers.*
 
-class ThreadTypeControllerSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite:
+class ThreadTypeControllerSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
   override def fakeApplication(): Application =
     new GuiceApplicationBuilder()
@@ -45,3 +45,4 @@ class ThreadTypeControllerSpec extends AnyWordSpec with Matchers with GuiceOneAp
       contentType(result) shouldBe Some("text/html")
       charset(result)     shouldBe Some("utf-8")
   }
+}

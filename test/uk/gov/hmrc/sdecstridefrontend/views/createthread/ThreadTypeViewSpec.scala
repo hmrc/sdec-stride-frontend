@@ -40,7 +40,7 @@ class ThreadTypeViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
 
   private def form: Form[ThreadType] = formProvider()
 
-  private def page(): Document =
+  private lazy val page: Document =
     Jsoup.parse(view(form)(using request, messages).body)
 
   val pageTitle   = "What do you want to do?"
@@ -48,27 +48,29 @@ class ThreadTypeViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
 
   "ThreadTypeView" should {
     "have a title" in {
-      page().title() shouldBe s"$pageTitle - $serviceName - GOV.UK"
+      page.title() shouldBe s"$pageTitle - $serviceName - GOV.UK"
     }
 
     "have a unique H1 heading" in {
-      val h1Elements: Elements = page().getElementsByTag("h1")
+      val h1Elements: Elements = page.getElementsByTag("h1")
       h1Elements.size() shouldBe 1
       h1Elements.text() shouldBe pageTitle
     }
 
-    "show a Radio Selection for choosing the Thread Type" in {
-      page().select("#main-content .govuk-radios").size() shouldBe 1
+    "show a Radio Selection for choosing the Thread Type with hints" in {
+      val radioButtons = page.select("#main-content .govuk-radios")
 
-      page().select("#main-content .govuk-radios__label").eachText().asScala.toSeq shouldBe Seq(
+      radioButtons.size() shouldBe 1
+
+      val radioOptions = radioButtons.select(".govuk-radios__item")
+
+      radioOptions.select(".govuk-radios__label").eachText().asScala.toSeq shouldBe Seq(
         "Send file(s)",
         "Request file(s)",
         "Send and request file(s)"
       )
-    }
 
-    "show a hint under each radio option" in {
-      page().select("#main-content .govuk-radios__hint").eachText().asScala.toSeq shouldBe Seq(
+      radioOptions.select(".govuk-radios__hint").eachText().asScala.toSeq shouldBe Seq(
         "You must include at least one file and a message. The recipient cannot respond.",
         "You must include a message and the recipient must respond with their file(s) and a message.",
         "You must include a file and a message and the recipient must respond with their file(s) and a message."
@@ -76,7 +78,7 @@ class ThreadTypeViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSu
     }
 
     "show a Continue button" in {
-      val button = page().select("#main-content .govuk-button")
+      val button = page.select("#main-content .govuk-button")
       button.size()               shouldBe 1
       button.first().text()       shouldBe "Continue"
       button.first().attr("type") shouldBe "submit"

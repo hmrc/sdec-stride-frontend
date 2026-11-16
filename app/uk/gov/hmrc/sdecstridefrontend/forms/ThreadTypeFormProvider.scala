@@ -30,7 +30,7 @@ class ThreadTypeFormProvider @Inject() extends Mappings {
       "threadType" -> enumerable[ThreadTypeOptions](requiredKey = "label.select_what_you_need_to_do")
     )(ThreadType.apply)(threadType =>
       Some(
-        threadType.option
+        threadType.options
       )
     )
   )

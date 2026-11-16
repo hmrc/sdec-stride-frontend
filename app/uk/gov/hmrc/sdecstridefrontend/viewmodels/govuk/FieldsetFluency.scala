@@ -29,7 +29,7 @@ trait FieldsetFluency {
       Fieldset(legend = Some(legend))
   }
 
-  extension (fieldset: Fieldset)
+  extension (fieldset: Fieldset) {
 
     def describedBy(value: String): Fieldset =
       fieldset.copy(describedBy = Some(value))
@@ -45,6 +45,7 @@ trait FieldsetFluency {
 
     def withHtml(html: Html): Fieldset =
       fieldset.copy(html = html)
+  }
 
   object LegendViewModel {
 
@@ -52,7 +53,7 @@ trait FieldsetFluency {
       Legend(content = content)
   }
 
-  extension (legend: Legend)
+  extension (legend: Legend) {
 
     def asPageHeading(size: LegendSize = LegendSize.ExtraLarge): Legend =
       legend
@@ -61,4 +62,5 @@ trait FieldsetFluency {
 
     def withCssClass(newClass: String): Legend =
       legend.copy(classes = s"${legend.classes} $newClass")
+  }
 }

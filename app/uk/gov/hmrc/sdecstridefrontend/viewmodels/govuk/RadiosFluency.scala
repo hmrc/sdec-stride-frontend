@@ -117,7 +117,7 @@ trait RadiosFluency {
     }
   }
 
-  extension (radios: Radios)
+  extension (radios: Radios) {
 
     def withHint(hint: Hint): Radios =
       radios.copy(hint = Some(hint))
@@ -136,4 +136,5 @@ trait RadiosFluency {
 
     def inline(): Radios =
       radios.withCssClass("govuk-radios--inline")
+  }
 }

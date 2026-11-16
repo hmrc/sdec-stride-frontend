@@ -31,7 +31,7 @@ trait ButtonFluency {
       )
   }
 
-  extension (button: Button)
+  extension (button: Button) {
 
     def asLink(href: String): Button =
       button.copy(
@@ -66,4 +66,5 @@ trait ButtonFluency {
 
     def asWarningButton(): Button =
       withCssClass("govuk-button--warning")
+  }
 }
