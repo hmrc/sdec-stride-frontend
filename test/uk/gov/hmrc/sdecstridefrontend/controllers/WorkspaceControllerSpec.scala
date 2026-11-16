@@ -20,10 +20,10 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.Application
 import play.api.http.Status
+import play.api.inject.bind
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.FakeRequest
 import play.api.test.Helpers.*
-import play.api.inject.bind
 import uk.gov.hmrc.sdecstridefrontend.infrastructure.TestStrideAuth
 import uk.gov.hmrc.sdecstridefrontend.models.{StaffAuth, TestStaff}
 import uk.gov.hmrc.sdecstridefrontend.security.action.StrideAuthAlgebra

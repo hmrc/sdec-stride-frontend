@@ -22,6 +22,7 @@ import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, MessagesR
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import uk.gov.hmrc.sdecstridefrontend.config.AppConfig
 import uk.gov.hmrc.sdecstridefrontend.views.html.InsufficientRoles
+
 import scala.concurrent.Future
 
 @Singleton

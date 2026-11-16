@@ -16,9 +16,9 @@
 
 package uk.gov.hmrc.sdecstridefrontend.infrastructure
 
-import play.api.{Configuration, Environment}
-import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.inject.bind
+import play.api.inject.guice.GuiceApplicationBuilder
+import play.api.{Configuration, Environment}
 
 trait ApplicationConfigBuilder {
 
@@ -30,7 +30,7 @@ trait ApplicationConfigBuilder {
         bind[Environment].toInstance(env)
       )
   }
-  
+
   def configuration(conf: Map[String, Any]): Configuration = Configuration.from(conf)
 
 }

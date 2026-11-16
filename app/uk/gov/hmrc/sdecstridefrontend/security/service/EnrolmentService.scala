@@ -17,8 +17,8 @@
 package uk.gov.hmrc.sdecstridefrontend.security.service
 
 import jakarta.inject.Inject
-import uk.gov.hmrc.auth.core.{Enrolment, Enrolments}
 import uk.gov.hmrc.auth.core.retrieve.{Credentials, Email, Name}
+import uk.gov.hmrc.auth.core.{Enrolment, Enrolments}
 import uk.gov.hmrc.sdecstridefrontend.config.EnrollmentConfig
 import uk.gov.hmrc.sdecstridefrontend.models.StaffAuth
 

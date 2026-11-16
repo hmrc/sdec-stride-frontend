@@ -37,7 +37,7 @@ import scala.concurrent.Future
 
 class StrideAuthSpec extends AnyFunSuite with Matchers with ScalaFutures with ApplicationConfigBuilder {
 
-  val enrolmentService = new EnrolmentServiceAlgebra {
+  val enrolmentService: EnrolmentServiceAlgebra = new EnrolmentServiceAlgebra {
     override def extractStaff(
       enrolments:  Enrolments,
       email:       Option[String],
@@ -53,14 +53,14 @@ class StrideAuthSpec extends AnyFunSuite with Matchers with ScalaFutures with Ap
     override def verifyEnrollment(staffAuth: StaffAuth): Boolean =
       staffAuth.enrolments.enrolments.exists(_.key.startsWith("sdec_"))
   }
-  val conf = Map[String, Any](
+  val conf: Map[String, Any] = Map[String, Any](
     "host"               -> "",
     "appName"            -> "sdec-stride-frontend",
     "urls.login"         -> "/authorise",
     "urls.loginContinue" -> "/sdec-stride-frontend",
     "urls.signOut"       -> "/sign-out"
   )
-  val loginConfig = LoginConfig(configuration(conf))
+  val loginConfig: LoginConfig = LoginConfig(configuration(conf))
 
   test("should execute the action successfully") {
     val authConnector = new TestAuthConnector(Future.successful(TestStaff.staffRetrievalResult))

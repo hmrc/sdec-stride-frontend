@@ -11,12 +11,21 @@ object CodeCoverageSettings {
     "prod.*",
     ".*Routes.*",
     "testOnly.*",
-    "testOnlyDoNotUseInAppConf.*"
+    "testOnlyDoNotUseInAppConf.*",
+    ".*.views.html.*"
+  )
+
+  private val excludedFiles: Seq[String] = Seq(
+    ".*Algebra",
+    ".*ViewUtils",
+    ".*ErrorTemplate",
+    ".*Layout",
+    ".*Heading"
   )
 
   val settings: Seq[Setting[_]] = Seq(
     ScoverageKeys.coverageExcludedPackages := excludedPackages.mkString(";"),
-    ScoverageKeys.coverageExcludedFiles := ".*Algebra",
+    ScoverageKeys.coverageExcludedFiles := excludedFiles.mkString(";"),
     ScoverageKeys.coverageMinimumStmtTotal := 90,
     ScoverageKeys.coverageFailOnMinimum := false,
     ScoverageKeys.coverageHighlighting := true

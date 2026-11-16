@@ -15,28 +15,29 @@
  */
 
 package uk.gov.hmrc.sdecstridefrontend.models
+import uk.gov.hmrc.auth.core.retrieve.{Credentials, Email, Name}
 import uk.gov.hmrc.auth.core.retrieve.~
 import uk.gov.hmrc.auth.core.{Enrolment, Enrolments}
-import uk.gov.hmrc.auth.core.retrieve.{Credentials, Email, Name}
 
 object TestStaff {
 
-  def enrolments(roles: String*) =
+  def enrolments(roles: String*): Enrolments =
     Enrolments(
-        roles.map { role =>
-          Enrolment(role)
-        }.toSet
+      roles.map { role =>
+        Enrolment(role)
+      }.toSet
     )
 
-  val standardStaff = StaffAuth(
+  val standardStaff: StaffAuth = StaffAuth(
     credentials = Credentials(providerId = "1000", providerType = "PrivilegeApplication"),
     email = Email("tester@example.net"),
     enrolments = Enrolments(Set(Enrolment("sdec_integration_user"))),
     name = Name(Some("Test"), Some("User"))
   )
-  
-  val insufficientRoleStaff = standardStaff.copy(
-    credentials = standardStaff.credentials.copy(providerId = "1001"), enrolments = enrolments("xxx_user")
+
+  val insufficientRoleStaff: StaffAuth = standardStaff.copy(
+    credentials = standardStaff.credentials.copy(providerId = "1001"),
+    enrolments = enrolments("xxx_user")
   )
 
   val staffRetrievalResult =

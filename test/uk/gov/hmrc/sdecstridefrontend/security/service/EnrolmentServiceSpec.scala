@@ -16,8 +16,6 @@
 
 package uk.gov.hmrc.sdecstridefrontend.security.service
 
-
-
 import org.scalatest.OptionValues
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.funsuite.AnyFunSuite
@@ -27,11 +25,16 @@ import uk.gov.hmrc.sdecstridefrontend.config.EnrollmentConfig
 import uk.gov.hmrc.sdecstridefrontend.infrastructure.ApplicationConfigBuilder
 import uk.gov.hmrc.sdecstridefrontend.models.TestStaff
 
-class EnrolmentServiceSpec extends AnyFunSuite with Matchers with ScalaFutures with ApplicationConfigBuilder with OptionValues {
-  val conf = Map[String, Any](
+class EnrolmentServiceSpec
+    extends AnyFunSuite
+    with Matchers
+    with ScalaFutures
+    with ApplicationConfigBuilder
+    with OptionValues {
+  val conf: Map[String, Any] = Map[String, Any](
     "stride.accessPrefixMatch" -> "SDEC_"
   )
-  val config = EnrollmentConfig(Configuration.from(conf))
+  val config: EnrollmentConfig = EnrollmentConfig(Configuration.from(conf))
   val sut = new EnrolmentService(config)
 
   test("verify a staff with sufficient enrollments") {
