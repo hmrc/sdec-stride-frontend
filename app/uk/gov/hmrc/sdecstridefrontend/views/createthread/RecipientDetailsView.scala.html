@@ -22,11 +22,11 @@
 
 @()(implicit request: RequestHeader, messages: Messages)
 
-@layout(pageTitle = messages("recipientdetails.title")) {
-    @heading(messages("recipientdetails.heading"))
+@layout(pageTitle = messages("label.recipient_details")) {
+    @heading(messages("label.recipient_details"))
 
     @govukButton(Button(
-        content = Text(messages("site.continue")),
+        content = Text(messages("label.continue")),
         href    = Some("/sdec-stride-frontend/create-thread/thread-type")
     ))
 }

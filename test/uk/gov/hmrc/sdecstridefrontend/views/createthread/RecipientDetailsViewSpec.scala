@@ -37,11 +37,11 @@ class RecipientDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAp
   "RecipientDetailsView" should {
 
     "have the Recipient Details page title" in:
-      page().title() shouldBe "Recipient Details"
+      page().title() shouldBe "Recipient details"
 
     "show a Recipient Details h1" in:
       val main = page().getElementById("main-content")
-      main.getElementsByTag("h1").text() shouldBe "Recipient Details"
+      main.getElementsByTag("h1").text() shouldBe "Recipient details"
 
     "show a single Continue button leading to the thread type selection screen" in:
       val main    = page().getElementById("main-content")
