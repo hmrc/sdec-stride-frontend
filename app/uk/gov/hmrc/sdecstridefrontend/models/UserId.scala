@@ -16,4 +16,4 @@
 
 package uk.gov.hmrc.sdecstridefrontend.models
 
-case class UserId (id: String)
+case class UserId(id: String)

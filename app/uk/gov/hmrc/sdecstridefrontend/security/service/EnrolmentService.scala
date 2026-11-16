@@ -44,8 +44,8 @@ class EnrolmentService @Inject() (config: EnrollmentConfig) extends EnrolmentSer
   }
 
   override def verifyEnrollment(staff: StaffAuth): Boolean =
-    staff.enrolments.enrolments.nonEmpty
-  
+    staff.enrolments.enrolments.filter(e => filterForSdec(e)).exists(e => e.key.split("_").length > 2)
+
   private def filterForSdec(enrolment: Enrolment): Boolean =
     enrolment.key.toUpperCase.startsWith(config.sdecAccessPrefixMatch)
 }

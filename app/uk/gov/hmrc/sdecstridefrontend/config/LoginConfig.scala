@@ -24,15 +24,15 @@ import javax.inject.Singleton
 @Singleton
 class LoginConfig @Inject() (config: Configuration) {
   private val SuccessUrl = "successURL"
-  private val Origin = "origin"
+  private val Origin     = "origin"
 
-  val host:             String = config.get[String]("host")
-  val appName:          String = config.get[String]("appName")
-  val loginUrl:         String = config.get[String]("urls.login")
-  val loginContinueUrl: String = config.get[String]("urls.loginContinue")
-  val signOutUrl:       String = config.get[String]("urls.signOut")
-  val sdecRedirect: Map[String, Seq[String]] = Map(
+  val host:             String                   = config.get[String]("host")
+  val appName:          String                   = config.get[String]("appName")
+  val loginUrl:         String                   = config.get[String]("urls.login")
+  val loginContinueUrl: String                   = config.get[String]("urls.loginContinue")
+  val signOutUrl:       String                   = config.get[String]("urls.signOut")
+  val sdecRedirect:     Map[String, Seq[String]] = Map(
     SuccessUrl -> Seq(loginContinueUrl),
-    Origin -> Seq(appName)
+    Origin     -> Seq(appName)
   )
 }

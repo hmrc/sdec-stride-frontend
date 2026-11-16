@@ -23,11 +23,19 @@ import play.api.http.Status
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.FakeRequest
 import play.api.test.Helpers.*
+import play.api.inject.bind
+import uk.gov.hmrc.sdecstridefrontend.infrastructure.TestStrideAuth
+import uk.gov.hmrc.sdecstridefrontend.models.{StaffAuth, TestStaff}
+import uk.gov.hmrc.sdecstridefrontend.security.action.StrideAuthAlgebra
 
 class WorkspaceControllerSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
   override def fakeApplication(): Application =
     new GuiceApplicationBuilder()
+      .overrides(
+        bind[StrideAuthAlgebra].to[TestStrideAuth],
+        bind[StaffAuth].toInstance(TestStaff.standardStaff)
+      )
       .build()
 
   private val fakeRequest = FakeRequest("GET", "/sdec-stride-frontend")

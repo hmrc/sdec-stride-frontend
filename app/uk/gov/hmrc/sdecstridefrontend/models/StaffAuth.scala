@@ -25,4 +25,3 @@ final case class StaffAuth(
   enrolments:  Enrolments,
   name:        Name
 )
-
