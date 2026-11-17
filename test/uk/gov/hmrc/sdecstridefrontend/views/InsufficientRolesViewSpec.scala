@@ -36,7 +36,7 @@ class InsufficientRolesViewSpec extends AnyWordSpec with Matchers with GuiceOneA
 
   "InsufficientRoles Page" should {
     "have the title in the page" in {
-      page().title() shouldBe "Secure Document Exchange - GOV.UK"
+      page().title() shouldBe "Secure Document Exchange - sdec-stride-frontend - GOV.UK"
     }
 
     "show the insufficient roles" in {
