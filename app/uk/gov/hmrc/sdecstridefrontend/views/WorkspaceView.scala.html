@@ -16,16 +16,18 @@
 
 @import uk.gov.hmrc.govukfrontend.views.html.components.{Button, GovukButton, Text}
 @import uk.gov.hmrc.sdecstridefrontend.views.html.components.Heading
+@import uk.gov.hmrc.sdecstridefrontend.controllers.createthread.routes.RecipientDetailsController
+
 
 @this(layout: Layout, govukButton: GovukButton, heading: Heading)
 
 @()(implicit request: RequestHeader, messages: Messages)
 
-@layout(pageTitle = Some(messages("workspace.title"))) {
-    @heading(messages("workspace.heading"))
+@layout(pageTitle = messages("label.workspace"), showBackLink = false) {
+    @heading(messages("label.workspace"))
 
     @govukButton(Button(
-        content = Text(messages("workspace.button.createThread")),
-        href    = Some("/sdec-stride-frontend/create-thread/recipient-details")
+        content = Text(messages("label.create_new_thread")),
+        href = Some(RecipientDetailsController.onPageLoad.url)
     ))
 }

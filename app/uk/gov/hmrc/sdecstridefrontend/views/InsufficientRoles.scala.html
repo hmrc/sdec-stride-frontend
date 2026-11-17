@@ -24,7 +24,7 @@
 @()(implicit request: Request[?], messages: Messages, config: AppConfig)
 
 @layout(
-    pageTitle = Some(titleNoForm("service.text")),
+    pageTitle = titleNoForm("service.text"),
     showBackLink = false
 ) {
     <h1 class="govuk-heading-l">@messages("insufficient.roles.header")</h1>

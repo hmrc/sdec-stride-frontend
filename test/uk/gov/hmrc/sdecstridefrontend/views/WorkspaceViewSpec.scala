@@ -46,7 +46,7 @@ class WorkspaceViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSui
       val main    = page().getElementById("main-content")
       val buttons = main.getElementsByClass("govuk-button")
       buttons.size()               shouldBe 1
-      buttons.first().text()       shouldBe "Create New Thread"
+      buttons.first().text()       shouldBe "Create new thread"
       buttons.first().attr("href") shouldBe "/sdec-stride-frontend/create-thread/recipient-details"
 
 }
