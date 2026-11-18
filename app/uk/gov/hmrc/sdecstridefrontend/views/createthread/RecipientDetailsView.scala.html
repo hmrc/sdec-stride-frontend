@@ -81,20 +81,18 @@
           ).withWidth(Fixed10)
         )
 
-
         @govukRadios(
           RadiosViewModel.yesNoWithConditionalHtml(
             field = form("hasRelatedCase"),
-            legend = LegendViewModel("label.does_this_relate_to_an_existing_case").asPageHeading(LegendSize.Medium),
+            legend = LegendViewModel("label.does_this_relate_to_an_existing_case").withCssClass(LegendSize.Medium.toString),
             conditionalHtml = govukInput(
               InputViewModel(
                 field = form("caseReferenceNumber"),
-                label = LabelViewModel("label.enter_a_case_reference_number").withCssClass("govuk-label--s")
+                label = LabelViewModel("label.enter_a_case_reference_number").withCssClass(LabelSize.Small.toString)
               ).withHint(HintViewModel("label.add_one_reference_number"))
             )
           ).withHint(HintViewModel("label.select_yes_if_this_communication_is_linked_to_an_existing_case"))
         )
-
 
         @govukButton(
           ButtonViewModel("label.continue")

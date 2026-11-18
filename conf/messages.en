@@ -38,7 +38,7 @@ label.enter_a_mobile_number = Enter a mobile number
 label.enter_a_mobile_number_in_the_correct_format = Enter a mobile number in the correct format
 
 label.enter_a_national_insurance_number = Enter a National Insurance number
-label.enter_a_national_insurance_number_in_the_correct_format = Enter a National Insurance number in the correct format, like QQ 12 34 56 C
+label.enter_a_national_insurance_number_in_the_correct_format = Enter a National Insurance number in the correct format
 label.enter_a_real_national_insurance_number = Enter a real National Insurance number
 
 label.select_whether_this_relates_to_an_existing_case = Select whether this relates to an existing case
