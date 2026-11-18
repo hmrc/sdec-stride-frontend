@@ -16,22 +16,48 @@
 
 package uk.gov.hmrc.sdecstridefrontend.controllers.createthread
 
-import play.api.i18n.I18nSupport
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.Logging
+import play.api.data.Form
+import play.api.i18n.{I18nSupport, MessagesApi}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+import uk.gov.hmrc.sdecstridefrontend.forms.RecipientDetailsFormProvider
+import uk.gov.hmrc.sdecstridefrontend.models.RecipientDetails
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.RecipientDetailsView
 
 import javax.inject.{Inject, Singleton}
+import scala.concurrent.Future
 
 @Singleton
 class RecipientDetailsController @Inject() (
-  mcc:                  MessagesControllerComponents,
-  recipientDetailsView: RecipientDetailsView
+  override val messagesApi:     MessagesApi,
+  recipientDetailsFormProvider: RecipientDetailsFormProvider,
+  mcc:                          MessagesControllerComponents,
+  recipientDetailsView:         RecipientDetailsView
 ) extends FrontendController(mcc)
-    with I18nSupport {
+    with I18nSupport
+    with Logging {
+
+  private val recipientDetailsForm: Form[RecipientDetails] = recipientDetailsFormProvider()
 
   def onPageLoad: Action[AnyContent] =
     Action: request =>
-      Ok(recipientDetailsView()(using request, request2Messages(request)))
+      given Request[AnyContent] = request
+      Ok(recipientDetailsView(recipientDetailsForm))
+
+  def onSubmit(): Action[AnyContent] = {
+    logger.info(s"Handling Recipient Details Submission")
+    Action.async: request =>
+      given Request[AnyContent] = request
+      recipientDetailsForm
+        .bindFromRequest()
+        .fold(
+          formWithErrors =>
+            Future.successful(
+              BadRequest(recipientDetailsView(formWithErrors))
+            ),
+          _ => Future.successful(Redirect(routes.RecipientDetailsController.onPageLoad()))
+        )
+  }
 
 }

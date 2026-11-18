@@ -20,6 +20,7 @@ import play.twirl.api.Html
 import uk.gov.hmrc.govukfrontend.views.viewmodels.content.Content
 import uk.gov.hmrc.govukfrontend.views.viewmodels.fieldset.{Fieldset, Legend}
 import uk.gov.hmrc.sdecstridefrontend.viewmodels.LegendSize
+import uk.gov.hmrc.sdecstridefrontend.viewmodels.LegendSize.ExtraLarge
 
 trait FieldsetFluency {
 
@@ -55,7 +56,10 @@ trait FieldsetFluency {
 
   extension (legend: Legend) {
 
-    def asPageHeading(size: LegendSize = LegendSize.ExtraLarge): Legend =
+    def asPageHeading(): Legend =
+      legend.asPageHeading(ExtraLarge)
+
+    def asPageHeading(size: LegendSize): Legend =
       legend
         .copy(isPageHeading = true)
         .withCssClass(size.toString)

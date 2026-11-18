@@ -24,5 +24,7 @@ package object govuk {
       with HintFluency
       with ErrorSummaryFluency
       with FieldsetFluency
+      with InputFluency
+      with LabelFluency
       with RadiosFluency
 }
