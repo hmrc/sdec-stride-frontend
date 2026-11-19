@@ -21,6 +21,8 @@ import uk.gov.hmrc.govukfrontend.views.viewmodels.content.Content
 import uk.gov.hmrc.govukfrontend.views.viewmodels.fieldset.{Fieldset, Legend}
 import uk.gov.hmrc.sdecstridefrontend.viewmodels.LegendSize
 
+object fieldset extends FieldsetFluency
+
 trait FieldsetFluency {
 
   object FieldsetViewModel {
@@ -29,7 +31,7 @@ trait FieldsetFluency {
       Fieldset(legend = Some(legend))
   }
 
-  extension (fieldset: Fieldset) {
+  implicit class FluentFieldset(fieldset: Fieldset) {
 
     def describedBy(value: String): Fieldset =
       fieldset.copy(describedBy = Some(value))
@@ -53,7 +55,7 @@ trait FieldsetFluency {
       Legend(content = content)
   }
 
-  extension (legend: Legend) {
+  implicit class FluentLegend(legend: Legend) {
 
     def asPageHeading(size: LegendSize = LegendSize.ExtraLarge): Legend =
       legend

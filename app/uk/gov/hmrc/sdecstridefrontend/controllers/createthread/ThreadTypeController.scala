@@ -22,7 +22,7 @@ import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.*
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import uk.gov.hmrc.sdecstridefrontend.forms.ThreadTypeFormProvider
-import uk.gov.hmrc.sdecstridefrontend.models.ThreadType
+import uk.gov.hmrc.sdecstridefrontend.models.{ThreadType, ThreadTypeOptions}
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.ThreadTypeView
 
 import javax.inject.{Inject, Singleton}
@@ -43,12 +43,14 @@ class ThreadTypeController @Inject() (
   def onPageLoad: Action[AnyContent] =
     Action: request =>
       given Request[AnyContent] = request
+
       Ok(threadTypeView(threadTypeForm))
 
   def onSubmit: Action[AnyContent] =
     logger.info(s"Handling Thread Type Submission")
     Action.async: request =>
       given Request[AnyContent] = request
+
       threadTypeForm
         .bindFromRequest()
         .fold(
@@ -56,6 +58,18 @@ class ThreadTypeController @Inject() (
             Future.successful(
               BadRequest(threadTypeView(formWithErrors))
             ),
-          _ => Future.successful(Redirect(routes.ThreadTypeController.onPageLoad()))
+          threadType =>
+            Future.successful(
+              threadType.options match {
+                case ThreadTypeOptions.Request =>
+                  Redirect(routes.ThreadDetailsController.onPageLoad())
+
+                case ThreadTypeOptions.Send =>
+                  Redirect(routes.ThreadTypeController.onPageLoad())
+
+                case ThreadTypeOptions.SendAndRequest =>
+                  Redirect(routes.ThreadTypeController.onPageLoad())
+              }
+            )
         )
 }

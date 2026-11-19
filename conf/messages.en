@@ -21,3 +21,32 @@ label.you_must_include_a_message_and_the_recipient_must_ = You must include a me
 label.you_must_include_a_file_and_a_message_and_the_recipient_ = You must include a file and a message and the recipient must respond with their file(s) and a message.
 
 label.select_what_you_need_to_do = Select what you need to do
+
+label.threadDetails.title = Thread details
+label.threadDetails.caption = Create new thread
+label.threadDetails.heading = Thread details
+threadDetails.recipient.heading = Recipients details
+label.threadDetails.message = Write your message
+label.threadDetails.message.hint = Use this space to request any files or information from the recipient, or tell them why you've sent a file and what they need to do.
+
+label.threadDetails.error.message.required = Enter a message
+label.threadDetails.error.message.length = Message must be 1,000 characters or less. You have {0} characters too many
+
+label.threadDetails.responseDate.legend = When do you need a reply?
+label.threadDetails.responseDate.hint = Enter a deadline for a response from your recipient. Use a realistic deadline which gives them time to respond.
+
+label.threadDetails.responseDate.error.all.required = Enter the day, month and year
+label.threadDetails.responseDate.error.two.required = Enter the missing parts of the date
+label.threadDetails.responseDate.error.required = Enter the missing part of the date
+label.threadDetails.responseDate.error.day.required = Enter the day part of the date
+label.threadDetails.responseDate.error.month.required = Enter the month part of the date
+label.threadDetails.responseDate.error.year.required = Enter the year part of the date
+label.threadDetails.responseDate.error.invalid = Enter a valid response date
+label.threadDetails.responseDate.error.year.length = Enter the year using 4 digits
+label.threadDetails.responseDate.error.future = The response date must be in the future
+
+label.checkYourAnswers.title = Check your answers
+label.checkYourAnswers.caption = Create new thread
+label.checkYourAnswers.heading = Check your answers
+
+label.site.continue = Continue

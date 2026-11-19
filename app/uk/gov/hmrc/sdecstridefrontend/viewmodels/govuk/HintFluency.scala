@@ -19,6 +19,8 @@ package uk.gov.hmrc.sdecstridefrontend.viewmodels.govuk
 import uk.gov.hmrc.govukfrontend.views.viewmodels.content.Content
 import uk.gov.hmrc.govukfrontend.views.viewmodels.hint.Hint
 
+object hint extends HintFluency
+
 trait HintFluency {
 
   object HintViewModel {
@@ -27,7 +29,7 @@ trait HintFluency {
       Hint(content = content)
   }
 
-  extension (hint: Hint) {
+  implicit class FluentHint(hint: Hint) {
 
     def withId(id: String): Hint =
       hint.copy(id = Some(id))

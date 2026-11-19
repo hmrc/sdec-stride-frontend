@@ -30,7 +30,7 @@ trait ErrorSummaryFluency {
     def apply(
       form:               Form[?],
       errorLinkOverrides: Map[String, String] = Map.empty
-    )(using messages: Messages): ErrorSummary = {
+    )(implicit messages: Messages): ErrorSummary = {
 
       val errors = form.errors.map { error =>
         ErrorLink(
@@ -46,7 +46,7 @@ trait ErrorSummaryFluency {
     }
   }
 
-  extension (errorSummary: ErrorSummary) {
+  implicit class FluentErrorSummary(errorSummary: ErrorSummary) {
 
     def withDescription(description: Content): ErrorSummary =
       errorSummary.copy(description = description)
