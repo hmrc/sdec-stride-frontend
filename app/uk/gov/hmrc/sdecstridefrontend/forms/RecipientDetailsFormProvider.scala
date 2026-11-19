@@ -16,10 +16,10 @@
 
 package uk.gov.hmrc.sdecstridefrontend.forms
 
-import play.api.data.{Form, FormError, Mapping}
 import play.api.data.Forms.*
 import play.api.data.format.Formatter
-import play.api.data.validation.{Constraint, Invalid, Valid}
+import play.api.data.validation.Constraint
+import play.api.data.{Form, FormError, Mapping}
 import uk.gov.hmrc.sdecstridefrontend.forms.mappings.Mappings
 import uk.gov.hmrc.sdecstridefrontend.models.RecipientDetails
 

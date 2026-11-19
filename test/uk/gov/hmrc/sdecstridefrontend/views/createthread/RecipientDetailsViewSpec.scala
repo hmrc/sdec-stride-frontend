@@ -25,10 +25,10 @@ import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.data.Form
 import play.api.i18n.MessagesApi
 import play.api.test.FakeRequest
+import uk.gov.hmrc.sdecstridefrontend.controllers.createthread.routes
 import uk.gov.hmrc.sdecstridefrontend.forms.RecipientDetailsFormProvider
 import uk.gov.hmrc.sdecstridefrontend.models.RecipientDetails
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.RecipientDetailsView
-import uk.gov.hmrc.sdecstridefrontend.controllers.createthread.routes
 
 import scala.jdk.CollectionConverters.*
 
