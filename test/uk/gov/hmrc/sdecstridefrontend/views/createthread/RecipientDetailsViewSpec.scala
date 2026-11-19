@@ -49,7 +49,7 @@ class RecipientDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAp
     ("lastName", "Last name"),
     ("email", "Email address"),
     ("phoneNumber", "Mobile number"),
-    ("nationalInsuranceNumber", "National Insurance Number")
+    ("nationalInsuranceNumber", "National Insurance number")
   )
 
   val pageTitle   = "Recipient details"
@@ -75,7 +75,7 @@ class RecipientDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAp
 
     textInputs.foreach { case (name, labelText) =>
       s"show a $labelText text input" in {
-        val input = page.select(s"#main-content input$name")
+        val input = page.select(s"#main-content input#$name")
 
         input.size()       shouldBe 1
         input.attr("name") shouldBe name

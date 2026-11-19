@@ -11,7 +11,6 @@ label.create_new_thread = Create new thread
 
 label.recipient_details = Recipient details
 label.create_new_thread = Create new thread
-label.who_are_you_contacting = Who are you contacting? NOT NEEDED??
 
 label.first_name = First name
 label.last_name = Last name
@@ -20,7 +19,7 @@ label.mobile_number = Mobile number
 label.national_insurance_number = National Insurance number
 
 label.does_this_relate_to_an_existing_case = Does this relate to an existing case?
-label.select_yes_if_this_communication_is_linked_to_an_existing_case = Select 'Yes' if this communication is linked to an existing case
+label.select_yes_if_this_communication_is_linked_to_an_existing_case = Select ''Yes'' if this communication is linked to an existing case
 
 label.enter_a_case_reference_number = Enter a case reference number
 label.add_one_reference_number = Add a reference number linked to the case. This could be a National Insurance number, a customer ID number or the UTR reference
