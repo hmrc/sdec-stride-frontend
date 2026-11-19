@@ -56,7 +56,7 @@ class RecipientDetailsController @Inject() (
             Future.successful(
               BadRequest(recipientDetailsView(formWithErrors))
             ),
-          _ => Future.successful(Redirect(routes.RecipientDetailsController.onPageLoad()))
+          _ => Future.successful(Redirect(routes.ThreadTypeController.onPageLoad()))
         )
   }
 
