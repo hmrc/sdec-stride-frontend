@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.sdecstridefrontend.models
+package uk.gov.hmrc.sdecstridefrontend.forms
 
 import play.api.libs.json.*
 

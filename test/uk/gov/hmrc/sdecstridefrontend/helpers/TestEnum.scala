@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.sdecstridefrontend.models
+package uk.gov.hmrc.sdecstridefrontend.helpers
 
-import play.api.libs.json.{Json, OFormat}
+import uk.gov.hmrc.sdecstridefrontend.forms.Enumerable
 
-final case class ThreadType(
-  options: ThreadTypeOptions
-)
+enum TestEnum(message: String) {
+  case TestSuccess extends TestEnum("Success")
+  case TestFailure extends TestEnum("Failure")
+}
 
-object ThreadType {
-  given format: OFormat[ThreadType] = Json.format[ThreadType]
+object TestEnum {
+  given Enumerable[TestEnum] = Enumerable(
+    "TestSuccess" -> TestSuccess,
+    "TestFailure" -> TestFailure
+  )
 }

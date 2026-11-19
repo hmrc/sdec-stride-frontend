@@ -26,7 +26,7 @@ import play.api.data.Form
 import play.api.i18n.MessagesApi
 import play.api.test.FakeRequest
 import uk.gov.hmrc.sdecstridefrontend.forms.ThreadTypeFormProvider
-import uk.gov.hmrc.sdecstridefrontend.models.ThreadType
+import uk.gov.hmrc.sdecstridefrontend.forms.models.ThreadType
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.ThreadTypeView
 
 import scala.jdk.CollectionConverters.*

@@ -18,7 +18,7 @@ package uk.gov.hmrc.sdecstridefrontend.forms.mappings
 
 import play.api.data.FieldMapping
 import play.api.data.Forms.of
-import uk.gov.hmrc.sdecstridefrontend.models.Enumerable
+import uk.gov.hmrc.sdecstridefrontend.forms.Enumerable
 
 trait Mappings extends Formatters with Constraints {
 

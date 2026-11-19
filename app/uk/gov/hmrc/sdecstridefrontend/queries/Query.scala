@@ -17,7 +17,7 @@
 package uk.gov.hmrc.sdecstridefrontend.queries
 
 import play.api.libs.json.JsPath
-import uk.gov.hmrc.sdecstridefrontend.models.UserAnswers
+import uk.gov.hmrc.sdecstridefrontend.forms.UserAnswers
 
 import scala.util.{Success, Try}
 
