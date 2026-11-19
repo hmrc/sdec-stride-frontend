@@ -19,7 +19,7 @@ package uk.gov.hmrc.sdecstridefrontend.forms
 import play.api.data.Form
 import play.api.data.Forms.*
 import uk.gov.hmrc.sdecstridefrontend.forms.mappings.Mappings
-import uk.gov.hmrc.sdecstridefrontend.models.{ThreadType, ThreadTypeOptions}
+import uk.gov.hmrc.sdecstridefrontend.forms.models.ThreadType
 
 import javax.inject.Inject
 

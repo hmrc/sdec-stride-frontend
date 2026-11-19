@@ -18,7 +18,7 @@ package uk.gov.hmrc.sdecstridefrontend.forms.mappings
 
 import play.api.data.FormError
 import play.api.data.format.Formatter
-import uk.gov.hmrc.sdecstridefrontend.models.Enumerable
+import uk.gov.hmrc.sdecstridefrontend.forms.Enumerable
 
 import scala.util.control.Exception.nonFatalCatch
 
