@@ -33,14 +33,18 @@ class RecipientDetailsControllerSpec extends AnyWordSpec with Matchers with Guic
   private val fakeRequest = FakeRequest("GET", "/sdec-stride-frontend")
   private val controller  = app.injector.instanceOf[RecipientDetailsController]
 
-  "GET /" should:
-    "return 200" in:
+  "GET /" should {
+
+    "return 200" in {
       val result = controller.onPageLoad(fakeRequest)
       status(result) shouldBe Status.OK
+    }
 
-    "return HTML" in:
+    "return HTML" in {
       val result = controller.onPageLoad(fakeRequest)
       contentType(result) shouldBe Some("text/html")
       charset(result)     shouldBe Some("utf-8")
+    }
+  }
 
 }

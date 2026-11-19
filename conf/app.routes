@@ -4,7 +4,8 @@
 
 GET         /                                       uk.gov.hmrc.sdecstridefrontend.controllers.WorkspaceController.onPageLoad
 
-GET         /create-thread/recipient-details        uk.gov.hmrc.sdecstridefrontend.controllers.createthread.RecipientDetailsController.onPageLoad
+GET         /create-thread/recipient-details        uk.gov.hmrc.sdecstridefrontend.controllers.createthread.RecipientDetailsController.onPageLoad()
+POST        /create-thread/recipient-details        uk.gov.hmrc.sdecstridefrontend.controllers.createthread.RecipientDetailsController.onSubmit()
 
 GET         /create-thread/thread-type              uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadTypeController.onPageLoad()
 POST        /create-thread/thread-type              uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadTypeController.onSubmit()

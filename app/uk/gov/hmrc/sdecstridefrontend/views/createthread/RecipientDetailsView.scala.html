@@ -14,19 +14,91 @@
  * limitations under the License.
  *@
 
-@import uk.gov.hmrc.govukfrontend.views.html.components.{Button, GovukButton, Text}
-@import uk.gov.hmrc.sdecstridefrontend.views.html.components.Heading
+@import uk.gov.hmrc.sdecstridefrontend.viewmodels._
+@import uk.gov.hmrc.sdecstridefrontend.viewmodels.InputWidth._
+@import uk.gov.hmrc.sdecstridefrontend.models.RecipientDetails
+
 @import uk.gov.hmrc.sdecstridefrontend.views.html.Layout
+@import uk.gov.hmrc.govukfrontend.views.html.components.{Button, GovukButton, Text}
 
-@this(layout: Layout, govukButton: GovukButton, heading: Heading)
+@this(
+      layout: Layout,
+      formHelper: FormWithCSRF,
+      govukErrorSummary: GovukErrorSummary,
+      govukInput: GovukInput,
+      govukRadios: GovukRadios,
+      govukButton: GovukButton
+)
 
-@()(implicit request: RequestHeader, messages: Messages)
+@(form: Form[RecipientDetails])(implicit request: Request[_], messages: Messages)
 
-@layout(pageTitle = messages("label.recipient_details")) {
-    @heading(messages("label.recipient_details"))
+@layout(pageTitle = title(form, messages("label.recipient_details"))) {
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-    @govukButton(Button(
-        content = Text(messages("label.continue")),
-        href    = Some("/sdec-stride-frontend/create-thread/thread-type")
-    ))
+      @if(form.errors.nonEmpty) {
+        @govukErrorSummary(
+          ErrorSummaryViewModel(form))
+      }
+
+      @formHelper(action = uk.gov.hmrc.sdecstridefrontend.controllers.createthread.routes.RecipientDetailsController.onSubmit()) {
+
+        <span class="govuk-caption-l">@messages("label.create_new_thread")</span>
+        <h1 class="govuk-heading-l">@messages("label.recipient_details")</h1>
+
+        @govukInput(
+          InputViewModel(
+            field = form("firstName"),
+            label = LabelViewModel("label.first_name")
+          ).withWidth(TwoThirds)
+        )
+
+        @govukInput(
+          InputViewModel(
+            field = form("lastName"),
+            label = LabelViewModel("label.last_name")
+          ).withWidth(TwoThirds)
+        )
+
+        @govukInput(
+          InputViewModel(
+            field = form("email"),
+            label = LabelViewModel("label.email_address")
+          ).withWidth(TwoThirds)
+        )
+
+        @govukInput(
+          InputViewModel(
+            field = form("phoneNumber"),
+            label = LabelViewModel("label.mobile_number")
+          ).withWidth(TwoThirds)
+        )
+
+        @govukInput(
+          InputViewModel(
+            field = form("nationalInsuranceNumber"),
+            label = LabelViewModel("label.national_insurance_number")
+          ).withWidth(Fixed10)
+        )
+
+        @govukRadios(
+          RadiosViewModel.yesNoWithConditionalHtml(
+            field = form("hasRelatedCase"),
+            legend = LegendViewModel("label.does_this_relate_to_an_existing_case").withCssClass(LegendSize.Medium.toString),
+            conditionalHtml = govukInput(
+              InputViewModel(
+                field = form("caseReferenceNumber"),
+                label = LabelViewModel("label.enter_a_case_reference_number").withCssClass(LabelSize.Small.toString)
+              ).withHint(HintViewModel("label.add_one_reference_number"))
+            )
+          ).withHint(HintViewModel("label.select_yes_if_this_communication_is_linked_to_an_existing_case"))
+        )
+
+        @govukButton(
+          ButtonViewModel("label.continue")
+        )
+      }
+
+  </div>
+</div>
 }
