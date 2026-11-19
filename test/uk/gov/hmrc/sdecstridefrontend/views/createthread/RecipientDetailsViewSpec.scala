@@ -28,6 +28,7 @@ import play.api.test.FakeRequest
 import uk.gov.hmrc.sdecstridefrontend.forms.RecipientDetailsFormProvider
 import uk.gov.hmrc.sdecstridefrontend.models.RecipientDetails
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.RecipientDetailsView
+import uk.gov.hmrc.sdecstridefrontend.controllers.createthread.routes
 
 import scala.jdk.CollectionConverters.*
 
@@ -66,6 +67,12 @@ class RecipientDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAp
       h1Elements.text() shouldBe pageTitle
     }
 
+    "post the form to the submit route" in {
+      val form = page.select("#main-content form")
+      form.attr("method") shouldBe "POST"
+      form.attr("action") shouldBe routes.RecipientDetailsController.onSubmit().url
+    }
+
     textInputs.foreach { case (name, labelText) =>
       s"show a $labelText text input" in {
         val input = page.select(s"#main-content input$name")
@@ -83,10 +90,20 @@ class RecipientDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAp
       radios.select(".govuk-radios__label").eachText().asScala.toSeq shouldBe Seq("Yes", "No")
     }
 
+    "show a hint for the existing case radios" in {
+      page.select("#main-content #hasRelatedCase-hint").text() shouldBe
+        "Select 'Yes' if this communication is linked to an existing case"
+    }
+
     "show a case reference input inside the Yes conditional" in {
       val conditional = page.select("#main-content .govuk-radios__conditional")
       conditional.select("input#caseReferenceNumber").size()      shouldBe 1
       conditional.select("label[for=caseReferenceNumber]").text() shouldBe "Enter a case reference number"
+    }
+
+    "show a hint fro the case reference input" in {
+      page.select("#main-content #caseReferenceNumber-hint").text() shouldBe
+        "Add a reference number linked to the case. This could be a National Insurance number, a customer ID number or the UTR reference"
     }
 
     "show a Continue button" in {

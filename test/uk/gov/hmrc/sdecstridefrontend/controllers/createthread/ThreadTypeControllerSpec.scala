@@ -36,13 +36,15 @@ class ThreadTypeControllerSpec extends AnyWordSpec with Matchers with GuiceOneAp
 
   "GET /" should {
 
-    "return 200" in:
+    "return 200" in {
       val result = controller.onPageLoad(fakeRequest)
       status(result) shouldBe Status.OK
+    }
 
-    "return HTML" in:
+    "return HTML" in {
       val result = controller.onPageLoad(fakeRequest)
       contentType(result) shouldBe Some("text/html")
       charset(result)     shouldBe Some("utf-8")
+    }
   }
 }
