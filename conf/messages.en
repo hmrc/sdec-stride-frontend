@@ -5,8 +5,8 @@ site.govuk = GOV.UK
 
 error.title.prefix = Error:
 
-insufficient.roles.header = Insufficient Role
-insufficient.roles.body = You do not have a role defined for access to this service
+label.insufficient_roles = Insufficient Role
+label.you_do_not_have_access = You do not have a role defined for access to this service
 
 workspace.title = Workspace
 workspace.heading = Workspace
