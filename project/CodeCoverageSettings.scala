@@ -15,7 +15,10 @@ object CodeCoverageSettings {
     ".*models.*",
     ".*viewmodels.*",
     ".*queries.*",
-    ".*views.*"
+    ".*views.*",
+    ".*forms.mappings.Formatters",
+    ".*forms.mappings.Constraints",
+    ".*forms.mappings.Mappings"
   )
 
   val settings: Seq[Setting[_]] = Seq(
