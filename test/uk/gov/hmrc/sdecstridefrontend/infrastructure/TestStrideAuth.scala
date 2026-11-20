@@ -16,11 +16,11 @@
 
 package uk.gov.hmrc.sdecstridefrontend.infrastructure
 
-import javax.inject.Inject
 import play.api.mvc.*
 import uk.gov.hmrc.sdecstridefrontend.models.StaffAuth
 import uk.gov.hmrc.sdecstridefrontend.security.action.StrideAuthAlgebra
 
+import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
 class TestStrideAuth @Inject() (staff: StaffAuth, actionBuilder: DefaultActionBuilder) extends StrideAuthAlgebra {
