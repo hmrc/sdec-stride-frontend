@@ -31,7 +31,7 @@ class ThreadTypeControllerSpec extends AnyWordSpec with Matchers with GuiceOneAp
     new GuiceApplicationBuilder()
       .build()
 
-  private val controller  = app.injector.instanceOf[ThreadTypeController]
+  private val controller = app.injector.instanceOf[ThreadTypeController]
 
   "GET" should {
     val fakeRequest = FakeRequest("GET", "/sdec-stride-frontend/create-thread/thread-type")
@@ -47,8 +47,6 @@ class ThreadTypeControllerSpec extends AnyWordSpec with Matchers with GuiceOneAp
   }
 
   "POST" should {
-    "return redirect" in {
-
-    }
+    "return redirect" in {}
   }
 }

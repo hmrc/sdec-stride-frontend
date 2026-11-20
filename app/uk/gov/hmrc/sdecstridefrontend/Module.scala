@@ -18,6 +18,8 @@ package uk.gov.hmrc.sdecstridefrontend
 
 import play.api.inject.{Binding, Module as AppModule}
 import play.api.{Configuration, Environment}
+import uk.gov.hmrc.sdecstridefrontend.security.action.{StrideAuth, StrideAuthAlgebra}
+import uk.gov.hmrc.sdecstridefrontend.security.service.{EnrolmentService, EnrolmentServiceAlgebra}
 
 import java.time.Clock
 
@@ -26,6 +28,9 @@ class Module extends AppModule:
   override def bindings(
     environment:   Environment,
     configuration: Configuration
-  ): Seq[Binding[_]] =
-    bind[Clock].toInstance(Clock.systemDefaultZone) :: // inject if current time needs to be controlled in unit tests
-      Nil
+  ): Seq[Binding[?]] =
+    Seq(
+      bind[EnrolmentServiceAlgebra].to[EnrolmentService],
+      bind[StrideAuthAlgebra].to[StrideAuth],
+      bind[Clock].toInstance(Clock.systemDefaultZone) // inject if current time needs to be controlled in unit tests
+    )
