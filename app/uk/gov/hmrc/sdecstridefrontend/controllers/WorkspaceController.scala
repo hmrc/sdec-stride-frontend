@@ -16,22 +16,35 @@
 
 package uk.gov.hmrc.sdecstridefrontend.controllers
 
+import play.api.Logging
 import play.api.i18n.I18nSupport
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
+import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+import uk.gov.hmrc.play.http.HeaderCarrierConverter
+import uk.gov.hmrc.sdecstridefrontend.security.action.StrideAuthAlgebra
 import uk.gov.hmrc.sdecstridefrontend.views.html.WorkspaceView
 
 import javax.inject.{Inject, Singleton}
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class WorkspaceController @Inject() (
   mcc:           MessagesControllerComponents,
+  strideAuth:    StrideAuthAlgebra,
   workspaceView: WorkspaceView
-) extends FrontendController(mcc)
-    with I18nSupport {
+)(using ExecutionContext)
+    extends FrontendController(mcc)
+    with I18nSupport
+    with Logging {
 
   def onPageLoad: Action[AnyContent] =
-    Action: request =>
-      Ok(workspaceView()(using request, request2Messages(request)))
+    strideAuth.authorisedFromStride { (staff, request) =>
+      logger.info(s"Staff: $staff")
+      // Placeholer for now as we will need this for calls to backend API
+      given HeaderCarrier       = HeaderCarrierConverter.fromRequestAndSession(request, request.session)
+      given Request[AnyContent] = request
+      Future.successful(Ok(workspaceView()))
+    }
 
 }
