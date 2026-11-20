@@ -32,15 +32,15 @@ class InsufficientRolesViewSpec extends AnyWordSpec with Matchers with GuiceOneA
   private val messages    = app.injector.instanceOf[MessagesApi].preferred(request)
   private given AppConfig = app.injector.instanceOf[AppConfig]
 
-  private def page(): Document = Jsoup.parse(view()(using request, messages).body)
+  private val page: Document = Jsoup.parse(view()(using request, messages).body)
 
   "InsufficientRoles Page" should {
     "have the title in the page" in {
-      page().title() shouldBe "Secure Document Exchange - sdec-stride-frontend - GOV.UK"
+      page.title() shouldBe "Secure Document Exchange - sdec-stride-frontend - GOV.UK"
     }
 
     "show the insufficient roles" in {
-      val mainPage = page().getElementById("main-content")
+      val mainPage = page.getElementById("main-content")
       mainPage.getElementsByTag("h1").text() shouldBe "Insufficient Role"
     }
   }
