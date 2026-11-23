@@ -27,13 +27,12 @@
         hmrcInternalHead: HmrcInternalHead,
         autocompleteJavascript: HmrcAccessibleAutocompleteJavascript,
         hmrcReportTechnicalIssueHelper: HmrcReportTechnicalIssueHelper,
-        govukLayout: GovukLayout,
+        govukLayout: GovukLayout
 )
 
 @(pageTitle: String, showBackLink: Boolean = true)(contentBlock: Html)(implicit request: RequestHeader, messages: Messages)
 
 @head = {
-
 @hmrcInternalHead()
 @hmrcScripts()
 @autocompleteJavascript()
@@ -44,7 +43,6 @@
         CSPNonce.attr
     } src='@controllers.routes.Assets.versioned("javascripts/application.min.js")'></script>
     <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/application.css")" type="text/css">
-
 }
 
 @header = {
