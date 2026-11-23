@@ -1,9 +1,9 @@
 service.name = Secure Document Exchange
 service.text = Secure Document Exchange
 
-site.govuk = GOV.UK
-
-error.title.prefix = Error:
+label.error_colon = Error:
+label.error = Error
+label.there_is_a_problem = There is a problem
 
 label.insufficient_roles = Insufficient Role
 label.you_do_not_have_access = You do not have a role defined for access to this service

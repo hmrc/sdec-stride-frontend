@@ -41,7 +41,7 @@ trait ErrorSummaryFluency {
 
       ErrorSummary(
         errorList = errors,
-        title = Text(messages("error.summary.title"))
+        title = Text(messages("label.there_is_a_problem"))
       )
     }
   }
