@@ -15,21 +15,39 @@
  *@
 
 @import uk.gov.hmrc.sdecstridefrontend.views.html.Layout
+@import uk.gov.hmrc.govukfrontend.views.viewmodels.summarylist.SummaryList
 
 @this(
-  layout: Layout
+  layout: Layout,
+  formHelper: FormWithCSRF,
+  govukSummaryList: GovukSummaryList,
+  govukButton: GovukButton
 )
 
-@()(implicit request: Request[_], messages: Messages)
+@(recipientDetailsList: SummaryList, threadDetailsList: SummaryList)(implicit request: Request[_], messages: Messages)
 
 @layout(pageTitle = messages("label.check_your_answers")) {
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
       <span class="govuk-caption-l">@messages("label.create_new_thread")</span>
 
       <h1 class="govuk-heading-l">@messages("label.check_your_answers")</h1>
+
+      <p class="govuk-body">@messages("label.use_this_page_to_make_any_changes_before_sending_your_request")</p>
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">@messages("label.recipient_details")</h2>
+      @govukSummaryList(recipientDetailsList)
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">@messages("label.thread_details")</h2>
+      @govukSummaryList(threadDetailsList)
+
+      @formHelper(action = uk.gov.hmrc.sdecstridefrontend.controllers.createthread.routes.CheckYourAnswersController.onSubmit()) {
+        @govukButton(
+          ButtonViewModel(messages("label.confirm_and_send"))
+        )
+      }
 
     </div>
   </div>

@@ -16,24 +16,49 @@
 
 package uk.gov.hmrc.sdecstridefrontend.controllers.createthread
 
-import play.api.Logging
-import play.api.i18n.{I18nSupport, MessagesApi}
+import play.api.i18n.I18nSupport
 import play.api.mvc.*
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+import uk.gov.hmrc.sdecstridefrontend.controllers.routes as appRoutes
+import uk.gov.hmrc.sdecstridefrontend.security.action.StrideAuthAlgebra
+import uk.gov.hmrc.sdecstridefrontend.session.CreateThreadSession
+import uk.gov.hmrc.sdecstridefrontend.viewmodels.checkyouranswers.{RecipientDetailsSummary, ThreadDetailsSummary}
+import uk.gov.hmrc.sdecstridefrontend.viewmodels.govuk.all.SummaryListViewModel
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.CheckYourAnswersView
 
 import javax.inject.{Inject, Singleton}
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class CheckYourAnswersController @Inject() (
-  override val messagesApi: MessagesApi,
-  mcc:                      MessagesControllerComponents,
-  checkYourAnswersView:     CheckYourAnswersView
-) extends FrontendController(mcc)
-    with I18nSupport
-    with Logging {
-  def onPageLoad: Action[AnyContent] =
-    Action { implicit request =>
-      Ok(checkYourAnswersView())
-    }
+  mcc:                  MessagesControllerComponents,
+  strideAuth:           StrideAuthAlgebra,
+  checkYourAnswersView: CheckYourAnswersView
+)(using ExecutionContext)
+    extends FrontendController(mcc)
+    with I18nSupport {
+
+  def onPageLoad: Action[AnyContent] = strideAuth.authorisedFromStride { (_, request) =>
+    given Request[AnyContent] = request
+
+    val page: Option[Result] =
+      for {
+        recipientDetails <- CreateThreadSession.recipient(request.session)
+        threadType       <- CreateThreadSession.threadType(request.session)
+        threadDetails    <- CreateThreadSession.threadDetails(request.session)
+      } yield Ok(
+        checkYourAnswersView(
+          SummaryListViewModel(RecipientDetailsSummary.rows(recipientDetails)),
+          SummaryListViewModel(ThreadDetailsSummary.rows(threadType, threadDetails))
+        )
+      )
+
+    // TODO: replace with a journey recovery page once it exists
+    Future.successful(page.getOrElse(Redirect(appRoutes.WorkspaceController.onPageLoad)))
+  }
+
+  def onSubmit: Action[AnyContent] = strideAuth.authorisedFromStride { (_, _) =>
+    Future.successful(Redirect(appRoutes.DevelopmentInProgressController.onPageLoad()))
+  }
+
 }

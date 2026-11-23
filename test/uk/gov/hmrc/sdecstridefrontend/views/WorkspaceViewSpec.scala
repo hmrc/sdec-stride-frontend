@@ -18,6 +18,7 @@ package uk.gov.hmrc.sdecstridefrontend.views
 
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
@@ -31,22 +32,28 @@ class WorkspaceViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSui
   private val request  = FakeRequest("GET", "/sdec-stride-frontend")
   private val messages = app.injector.instanceOf[MessagesApi].preferred(request)
 
-  private def page(): Document =
-    Jsoup.parse(view()(using request, messages).body)
+  private lazy val page: Document = Jsoup.parse(view()(using request, messages).body)
 
-  "WorkspaceView" should:
-    "have the Workspace page title" in:
-      page().title() shouldBe "Workspace"
+  val pageTitle = "Workspace"
 
-    "show a Workspace h1" in:
-      val main = page().getElementById("main-content")
-      main.getElementsByTag("h1").text() shouldBe "Workspace"
+  "WorkspaceView" should {
+    "have the Workspace page title" in {
+      page.title() shouldBe pageTitle
+    }
 
-    "show a single Create New Thread button linking to Recipient Details" in:
-      val main    = page().getElementById("main-content")
+    "have a unique H1 heading" in {
+      val h1Elements: Elements = page.getElementsByTag("h1")
+      h1Elements.size() shouldBe 1
+      h1Elements.text() shouldBe pageTitle
+    }
+
+    "show a single Create New Thread button linking to Recipient Details" in {
+      val main    = page.getElementById("main-content")
       val buttons = main.getElementsByClass("govuk-button")
       buttons.size()               shouldBe 1
       buttons.first().text()       shouldBe "Create new thread"
       buttons.first().attr("href") shouldBe "/sdec-stride-frontend/create-thread/recipient-details"
+    }
+  }
 
 }

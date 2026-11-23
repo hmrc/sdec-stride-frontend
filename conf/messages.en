@@ -16,7 +16,11 @@ label.sdec_stride_frontend = sdec-stride-frontend
 label.continue = Continue
 label.yes = Yes
 label.no = No
+label.change = Change
 label.govuk = GOV.UK
+label.confirm_and_send = Confirm and send
+
+label.development_in_progress = Development in progress
 
 label.workspace = Workspace
 
@@ -24,8 +28,17 @@ label.create_new_thread = Create new thread
 
 label.recipient_details = Recipient details
 
+label.related_case = Related case
+label.related_reference_number = Related reference number
+label.response_deadline = Response deadline
+label.message = Message
+label.use_this_page_to_make_any_changes_before_sending_your_request = Use this page to make any changes before sending your request
+label.what_you_want_to_do = What you want to do
+label.requested_items = Requested item(s)
+
 label.first_name = First name
 label.last_name = Last name
+label.their_name = Their name
 label.email_address = Email address
 label.mobile_number = Mobile number
 label.national_insurance_number = National Insurance number

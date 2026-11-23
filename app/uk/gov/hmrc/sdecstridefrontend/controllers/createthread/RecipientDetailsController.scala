@@ -23,6 +23,7 @@ import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import uk.gov.hmrc.sdecstridefrontend.forms.RecipientDetailsFormProvider
 import uk.gov.hmrc.sdecstridefrontend.models.RecipientDetails
+import uk.gov.hmrc.sdecstridefrontend.session.CreateThreadSession
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.RecipientDetailsView
 
 import javax.inject.{Inject, Singleton}
@@ -59,15 +60,7 @@ class RecipientDetailsController @Inject() (
           recipient =>
             Future.successful(
               Redirect(routes.ThreadTypeController.onPageLoad())
-                .addingToSession(
-                  "firstName"               -> recipient.firstName,
-                  "lastName"                -> recipient.lastName,
-                  "email"                   -> recipient.email,
-                  "phoneNumber"             -> recipient.phoneNumber,
-                  "nationalInsuranceNumber" -> recipient.nationalInsuranceNumber,
-                  "hasRelatedCase"          -> recipient.hasRelatedCase.toString,
-                  "caseReferenceNumber"     -> recipient.caseReferenceNumber.getOrElse("")
-                )
+                .addingToSession(CreateThreadSession.recipientEntries(recipient)*)
             )
         )
   }

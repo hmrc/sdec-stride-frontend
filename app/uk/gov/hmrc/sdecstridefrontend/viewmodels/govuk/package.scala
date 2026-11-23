@@ -21,11 +21,13 @@ package object govuk {
   object all
       extends ImplicitConversions
       with ButtonFluency
-      with HintFluency
+      with CharacterCountFluency
       with ErrorSummaryFluency
       with FieldsetFluency
+      with HintFluency
       with InputFluency
       with LabelFluency
       with RadiosFluency
-      with CharacterCountFluency
+      with SummaryListFluency
+
 }

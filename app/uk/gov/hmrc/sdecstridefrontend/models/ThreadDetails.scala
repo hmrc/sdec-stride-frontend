@@ -26,5 +26,5 @@ final case class ThreadDetails(
 )
 
 object ThreadDetails {
-  implicit val format: OFormat[ThreadDetails] = Json.format[ThreadDetails]
+  given format: OFormat[ThreadDetails] = Json.format[ThreadDetails]
 }

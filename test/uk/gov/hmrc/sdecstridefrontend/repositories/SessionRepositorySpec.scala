@@ -52,4 +52,5 @@ class SessionRepositorySpec
       repository.get("id2").futureValue shouldBe None
     }
   }
+
 }

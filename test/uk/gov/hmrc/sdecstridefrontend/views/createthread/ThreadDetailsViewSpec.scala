@@ -32,8 +32,7 @@ import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.ThreadDetailsView
 
 class ThreadDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
 
-  private val view =
-    app.injector.instanceOf[ThreadDetailsView]
+  private val view = app.injector.instanceOf[ThreadDetailsView]
 
   private val request = FakeRequest("GET", "/sdec-stride-frontend/create-thread/thread-details")
 

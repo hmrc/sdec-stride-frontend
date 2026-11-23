@@ -23,6 +23,7 @@ import play.api.mvc.*
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import uk.gov.hmrc.sdecstridefrontend.forms.ThreadTypeFormProvider
 import uk.gov.hmrc.sdecstridefrontend.models.{ThreadType, ThreadTypeOptions}
+import uk.gov.hmrc.sdecstridefrontend.session.CreateThreadSession
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.ThreadTypeView
 
 import javax.inject.{Inject, Singleton}
@@ -59,18 +60,21 @@ class ThreadTypeController @Inject() (
             Future.successful(
               BadRequest(threadTypeView(formWithErrors))
             ),
-          threadType =>
+          threadType => {
+            val redirect = threadType.options match {
+              case ThreadTypeOptions.Request =>
+                Redirect(routes.ThreadDetailsController.onPageLoad())
+
+              case ThreadTypeOptions.Send =>
+                Redirect(routes.ThreadTypeController.onPageLoad())
+
+              case ThreadTypeOptions.SendAndRequest =>
+                Redirect(routes.ThreadTypeController.onPageLoad())
+            }
+
             Future.successful(
-              threadType.options match {
-                case ThreadTypeOptions.Request =>
-                  Redirect(routes.ThreadDetailsController.onPageLoad())
-
-                case ThreadTypeOptions.Send =>
-                  Redirect(routes.ThreadTypeController.onPageLoad())
-
-                case ThreadTypeOptions.SendAndRequest =>
-                  Redirect(routes.ThreadTypeController.onPageLoad())
-              }
+              redirect.addingToSession(CreateThreadSession.threadTypeEntries(threadType.options)*)
             )
+          }
         )
 }

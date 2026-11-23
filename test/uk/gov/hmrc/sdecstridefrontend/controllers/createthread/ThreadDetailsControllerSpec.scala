@@ -35,25 +35,16 @@ class ThreadDetailsControllerSpec extends AnyWordSpec with Matchers with GuiceOn
     app.injector.instanceOf[ThreadDetailsController]
 
   "onPageLoad" should {
-
     "return 200" in {
-      val request = FakeRequest(
-        "GET",
-        "/create-thread/thread-details"
-      )
-
-      val result = controller.onPageLoad(request)
+      val request = FakeRequest("GET", "/create-thread/thread-details")
+      val result  = controller.onPageLoad(request)
 
       status(result) shouldBe Status.OK
     }
 
     "return HTML" in {
-      val request = FakeRequest(
-        "GET",
-        "/create-thread/thread-details"
-      )
-
-      val result = controller.onPageLoad(request)
+      val request = FakeRequest("GET", "/create-thread/thread-details")
+      val result  = controller.onPageLoad(request)
 
       contentType(result) shouldBe Some("text/html")
       charset(result)     shouldBe Some("utf-8")
@@ -61,15 +52,9 @@ class ThreadDetailsControllerSpec extends AnyWordSpec with Matchers with GuiceOn
   }
 
   "onSubmit" should {
-
     "return BAD_REQUEST when the form is invalid" in {
-      val request =
-        FakeRequest(
-          "POST",
-          "/create-thread/thread-details"
-        ).withFormUrlEncodedBody()
-
-      val result = controller.onSubmit(request)
+      val request = FakeRequest("POST", "/create-thread/thread-details").withFormUrlEncodedBody()
+      val result  = controller.onSubmit(request)
 
       status(result) shouldBe Status.BAD_REQUEST
     }
@@ -95,4 +80,5 @@ class ThreadDetailsControllerSpec extends AnyWordSpec with Matchers with GuiceOn
       )
     }
   }
+
 }

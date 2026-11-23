@@ -18,6 +18,7 @@ package uk.gov.hmrc.sdecstridefrontend.views
 
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
@@ -37,6 +38,13 @@ class InsufficientRolesViewSpec extends AnyWordSpec with Matchers with GuiceOneA
   "InsufficientRoles Page" should {
     "have the title in the page" in {
       page.title() shouldBe "Secure Document Exchange - sdec-stride-frontend - GOV.UK"
+    }
+
+    "have a unique H1 heading" in {
+      val h1Elements: Elements = page.getElementsByTag("h1")
+      h1Elements.size() shouldBe 1
+      h1Elements.text() shouldBe "Insufficient Role"
+      // h1Elements.text() shouldBe pageTitle
     }
 
     "show the insufficient roles" in {
