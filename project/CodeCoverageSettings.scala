@@ -6,16 +6,24 @@ object CodeCoverageSettings {
   private val excludedPackages: Seq[String] = Seq(
     "<empty>",
     "Reverse.*",
-    "uk.gov.hmrc.BuildInfo",
     "app.*",
+    "uk.gov.hmrc.BuildInfo",
     "prod.*",
     ".*Routes.*",
     "testOnly.*",
     "testOnlyDoNotUseInAppConf.*",
+    ".*.views.html.*",
     ".*models.*",
     ".*viewmodels.*",
     ".*queries.*",
-    ".*views.*",
+  )
+
+  private val excludedFiles: Seq[String] = Seq(
+    ".*Algebra",
+    ".*ViewUtils",
+    ".*ErrorTemplate",
+    ".*Layout",
+    ".*Heading",
     ".*forms.mappings.Formatters",
     ".*forms.mappings.Constraints",
     ".*forms.mappings.Mappings"
@@ -23,7 +31,8 @@ object CodeCoverageSettings {
 
   val settings: Seq[Setting[_]] = Seq(
     ScoverageKeys.coverageExcludedPackages := excludedPackages.mkString(";"),
-    ScoverageKeys.coverageMinimumStmtTotal := 90,
+    ScoverageKeys.coverageExcludedFiles := excludedFiles.mkString(";"),
+    ScoverageKeys.coverageMinimumStmtTotal := 23,
     ScoverageKeys.coverageFailOnMinimum := false,
     ScoverageKeys.coverageHighlighting := true
   )

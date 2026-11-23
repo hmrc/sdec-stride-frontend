@@ -28,6 +28,6 @@
 
     @govukButton(Button(
         content = Text(messages("label.create_new_thread")),
-        href = Some(RecipientDetailsController.onPageLoad.url)
+        href = Some(uk.gov.hmrc.sdecstridefrontend.controllers.createthread.routes.RecipientDetailsController.onPageLoad().url),
     ))
 }

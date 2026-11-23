@@ -26,7 +26,7 @@ import uk.gov.hmrc.sdecstridefrontend.models.{ThreadType, ThreadTypeOptions}
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.ThreadTypeView
 
 import javax.inject.{Inject, Singleton}
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class ThreadTypeController @Inject() (
@@ -34,7 +34,8 @@ class ThreadTypeController @Inject() (
   threadTypeFormProvider:   ThreadTypeFormProvider,
   mcc:                      MessagesControllerComponents,
   threadTypeView:           ThreadTypeView
-) extends FrontendController(mcc)
+)(using ExecutionContext)
+    extends FrontendController(mcc)
     with I18nSupport
     with Logging {
 

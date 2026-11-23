@@ -2,7 +2,7 @@ import play.sbt.routes.RoutesKeys
 import uk.gov.hmrc.DefaultBuildSettings
 
 ThisBuild / majorVersion := 0
-ThisBuild / scalaVersion := "3.3.7"
+ThisBuild / scalaVersion := "3.3.9"
 ThisBuild / scalacOptions += "-Wconf:msg=Flag.*repeatedly:s"
 ThisBuild / semanticdbEnabled := true
 
@@ -23,6 +23,7 @@ lazy val microservice = Project("sdec-stride-frontend", file("."))
       "uk.gov.hmrc.hmrcfrontend.views.config._",
       "uk.gov.hmrc.sdecstridefrontend.views.ViewUtils._",
       "uk.gov.hmrc.sdecstridefrontend.viewmodels.govuk.all._",
+      "uk.gov.hmrc.sdecstridefrontend.viewmodels.govuk.all.given",
       "controllers.routes._"
     ),
     PlayKeys.playDefaultPort := 4000,
