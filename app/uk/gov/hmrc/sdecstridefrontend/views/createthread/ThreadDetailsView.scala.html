@@ -16,6 +16,7 @@
 
 @import uk.gov.hmrc.sdecstridefrontend.views.html.Layout
 @import uk.gov.hmrc.sdecstridefrontend.models.ThreadDetails
+@import uk.gov.hmrc.sdecstridefrontend.models.RecipientDetails
 
 @this(
   layout: Layout,
@@ -26,7 +27,7 @@
   govukDateInput: GovukDateInput
 )
 
-@(form: Form[ThreadDetails])(implicit request: Request[_], messages: Messages)
+@(form: Form[ThreadDetails], recipient: RecipientDetails)(implicit request: Request[_], messages: Messages)
 
 @responseDateHtml = {
   @govukDateInput(DateInput(
@@ -97,9 +98,9 @@
       <div class="sdec-recipient-banner">
         <h2 class="govuk-heading-s govuk-!-margin-bottom-2">@messages("threadDetails.recipient.heading")</h2>
         <div class="sdec-recipient-banner__details">
-          <p class="govuk-body govuk-!-margin-bottom-0">First name Last name</p>
-          <p class="govuk-body govuk-!-margin-bottom-0">Email</p>
-          <p class="govuk-body govuk-!-margin-bottom-0">Phone number</p>
+          <p class="govuk-body govuk-!-margin-bottom-0">@recipient.firstName @recipient.lastName</p>
+          <p class="govuk-body govuk-!-margin-bottom-0">@recipient.email</p>
+          <p class="govuk-body govuk-!-margin-bottom-0">@recipient.phoneNumber</p>
         </div>
       </div>
 

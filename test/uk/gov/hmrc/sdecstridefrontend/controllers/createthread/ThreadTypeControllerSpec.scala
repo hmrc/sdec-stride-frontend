@@ -36,8 +36,6 @@ class ThreadTypeControllerSpec extends AnyWordSpec with Matchers with GuiceOneAp
   "onPageLoad" should {
 
     "return 200" in {
-      val result = controller.onPageLoad(fakeRequest)
-    "return 200" in {
       val result =
         controller.onPageLoad(
           FakeRequest("GET", "/create-thread/thread-type")
@@ -47,8 +45,6 @@ class ThreadTypeControllerSpec extends AnyWordSpec with Matchers with GuiceOneAp
     }
 
     "return HTML" in {
-      val result = controller.onPageLoad(fakeRequest)
-    "return HTML" in {
       val result =
         controller.onPageLoad(
           FakeRequest("GET", "/create-thread/thread-type")
@@ -56,9 +52,6 @@ class ThreadTypeControllerSpec extends AnyWordSpec with Matchers with GuiceOneAp
 
       contentType(result) shouldBe Some("text/html")
       charset(result)     shouldBe Some("utf-8")
-    }
-  }
-}
     }
   }
 

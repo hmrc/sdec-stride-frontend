@@ -27,5 +27,5 @@ package object govuk {
       with InputFluency
       with LabelFluency
       with RadiosFluency
-        with CharacterCountFluency
+      with CharacterCountFluency
 }

@@ -73,12 +73,12 @@ trait RadiosFluency {
         RadioItem(
           id = Some(field.id),
           value = Some("true"),
-          content = Text(messages("site.yes"))
+          content = Text(messages("label.yes"))
         ),
         RadioItem(
           id = Some(s"${field.id}-no"),
           value = Some("false"),
-          content = Text(messages("site.no"))
+          content = Text(messages("label.no"))
         )
       )
 
@@ -99,13 +99,13 @@ trait RadiosFluency {
         RadioItem(
           id = Some(field.id),
           value = Some("true"),
-          content = Text(messages("site.yes")),
+          content = Text(messages("label.yes")),
           conditionalHtml = Some(conditionalHtml)
         ),
         RadioItem(
           id = Some(s"${field.id}-no"),
           value = Some("false"),
-          content = Text(messages("site.no"))
+          content = Text(messages("label.no"))
         )
       )
 

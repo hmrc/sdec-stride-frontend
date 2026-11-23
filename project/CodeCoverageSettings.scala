@@ -15,7 +15,7 @@ object CodeCoverageSettings {
     ".*.views.html.*",
     ".*models.*",
     ".*viewmodels.*",
-    ".*queries.*",
+    ".*queries.*"
   )
 
   private val excludedFiles: Seq[String] = Seq(

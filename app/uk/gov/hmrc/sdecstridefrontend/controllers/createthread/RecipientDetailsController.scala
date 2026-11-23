@@ -56,7 +56,19 @@ class RecipientDetailsController @Inject() (
             Future.successful(
               BadRequest(recipientDetailsView(formWithErrors))
             ),
-          _ => Future.successful(Redirect(routes.ThreadTypeController.onPageLoad()))
+          recipient =>
+            Future.successful(
+              Redirect(routes.ThreadTypeController.onPageLoad())
+                .addingToSession(
+                  "firstName"               -> recipient.firstName,
+                  "lastName"                -> recipient.lastName,
+                  "email"                   -> recipient.email,
+                  "phoneNumber"             -> recipient.phoneNumber,
+                  "nationalInsuranceNumber" -> recipient.nationalInsuranceNumber,
+                  "hasRelatedCase"          -> recipient.hasRelatedCase.toString,
+                  "caseReferenceNumber"     -> recipient.caseReferenceNumber.getOrElse("")
+                )
+            )
         )
   }
 
