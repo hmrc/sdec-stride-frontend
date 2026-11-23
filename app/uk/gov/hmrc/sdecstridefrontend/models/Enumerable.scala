@@ -40,7 +40,7 @@ object Enumerable {
             .map { s =>
               JsSuccess(s)
             }
-            .getOrElse(JsError(s"Invalid value: $str"))
+            .getOrElse(JsError("Invalid value"))
         case _ =>
           JsError("Expected JSON String")
       }
