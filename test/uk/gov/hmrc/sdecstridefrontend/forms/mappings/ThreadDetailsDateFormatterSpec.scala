@@ -100,7 +100,7 @@ class ThreadDetailsDateFormatterSpec extends AnyWordSpec with Matchers {
         List(
           FormError(
             "responseDate.year",
-            "label.threadDetails.responseDate.error.year.required"
+            "label.threadDetails_responseDate_error_year_required"
           )
         )
       )
@@ -121,7 +121,7 @@ class ThreadDetailsDateFormatterSpec extends AnyWordSpec with Matchers {
         List(
           FormError(
             "responseDate.year",
-            "label.threadDetails.responseDate.error.year.length"
+            "label.threadDetails_responseDate_error_year_length"
           )
         )
       )

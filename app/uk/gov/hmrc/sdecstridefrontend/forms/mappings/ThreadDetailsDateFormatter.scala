@@ -103,7 +103,7 @@ class ThreadDetailsDateFormatter(
             Seq(
               FormError(
                 s"$key.year",
-                "label.threadDetails.responseDate.error.year.length"
+                "label.threadDetails_responseDate_error_year_length"
               )
             )
           )
@@ -138,7 +138,7 @@ class ThreadDetailsDateFormatter(
           List(
             FormError(
               s"$key.$missingField",
-              s"label.threadDetails.responseDate.error.$missingField.required"
+              s"label.threadDetails_responseDate_error_${missingField}_required"
             )
           )
         )
