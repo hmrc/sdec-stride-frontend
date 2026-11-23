@@ -21,6 +21,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import play.api.i18n.{Lang, MessagesImpl}
 import play.api.test.Helpers.stubMessagesApi
+import uk.gov.hmrc.sdecstridefrontend.forms.validators.ThreadDetailsFormProvider
 
 import java.time.LocalDate
 

@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.sdecstridefrontend.forms
+package uk.gov.hmrc.sdecstridefrontend.forms.validators
 
 import play.api.data.Form
 import play.api.data.Forms.*
 import play.api.data.validation.{Constraint, Invalid, Valid}
-import play.api.i18n.Messages
 import uk.gov.hmrc.sdecstridefrontend.forms.mappings.Mappings
 import uk.gov.hmrc.sdecstridefrontend.models.ThreadDetails
 
@@ -50,7 +49,7 @@ class ThreadDetailsFormProvider @Inject() extends Mappings {
         Invalid("label.threadDetails_responseDate_error_future")
     }
 
-  def apply()(implicit messages: Messages): Form[ThreadDetails] = Form(
+  def apply(): Form[ThreadDetails] = Form(
     mapping(
       "message" -> text("label.threadDetails_error_message_required")
         .verifying(

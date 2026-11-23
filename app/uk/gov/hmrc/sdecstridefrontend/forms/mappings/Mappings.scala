@@ -18,7 +18,6 @@ package uk.gov.hmrc.sdecstridefrontend.forms.mappings
 
 import play.api.data.FieldMapping
 import play.api.data.Forms.of
-import play.api.i18n.Messages
 import uk.gov.hmrc.sdecstridefrontend.models.Enumerable
 
 import java.time.LocalDate
@@ -58,7 +57,7 @@ trait Mappings extends Formatters with Constraints {
     allRequiredKey: String,
     twoRequiredKey: String,
     requiredKey:    String
-  )(implicit messages: Messages): FieldMapping[LocalDate] =
+  ): FieldMapping[LocalDate] =
     of(
       new ThreadDetailsDateFormatter(
         invalidKey,

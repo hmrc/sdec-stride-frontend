@@ -31,7 +31,7 @@ trait ButtonFluency {
       )
   }
 
-  implicit class FluentButton(button: Button) {
+  extension (button: Button) {
 
     def asLink(href: String): Button =
       button.copy(

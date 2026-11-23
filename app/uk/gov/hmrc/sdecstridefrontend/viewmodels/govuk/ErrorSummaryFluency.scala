@@ -46,7 +46,7 @@ trait ErrorSummaryFluency {
     }
   }
 
-  implicit class FluentErrorSummary(errorSummary: ErrorSummary) {
+  extension (errorSummary: ErrorSummary) {
 
     def withDescription(description: Content): ErrorSummary =
       errorSummary.copy(description = description)

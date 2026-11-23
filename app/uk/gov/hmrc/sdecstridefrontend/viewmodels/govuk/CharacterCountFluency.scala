@@ -40,7 +40,7 @@ trait CharacterCountFluency {
       )
   }
 
-  implicit class FluentCharacterCount(characterCount: CharacterCount) {
+  extension (characterCount: CharacterCount) {
 
     def withHint(hint: Hint): CharacterCount =
       characterCount.copy(hint = Some(hint))

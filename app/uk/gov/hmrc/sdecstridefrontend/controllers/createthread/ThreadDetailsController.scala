@@ -17,11 +17,12 @@
 package uk.gov.hmrc.sdecstridefrontend.controllers.createthread
 
 import play.api.Logging
+import play.api.data.Form
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.*
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import uk.gov.hmrc.sdecstridefrontend.forms.ThreadDetailsFormProvider
-import uk.gov.hmrc.sdecstridefrontend.models.RecipientDetails
+import uk.gov.hmrc.sdecstridefrontend.forms.validators.ThreadDetailsFormProvider
+import uk.gov.hmrc.sdecstridefrontend.models.{RecipientDetails, ThreadDetails}
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.ThreadDetailsView
 
 import javax.inject.{Inject, Singleton}
@@ -36,6 +37,8 @@ class ThreadDetailsController @Inject() (
     with I18nSupport
     with Logging {
 
+  private val threadDetailsForm: Form[ThreadDetails] = threadDetailsFormProvider()
+
   private def recipientFromSession(using request: Request[AnyContent]): RecipientDetails =
     RecipientDetails(
       firstName = request.session.get("firstName").getOrElse(""),
@@ -49,18 +52,16 @@ class ThreadDetailsController @Inject() (
 
   def onPageLoad: Action[AnyContent] =
     Action { implicit request =>
-      val form      = threadDetailsFormProvider()
       val recipient = recipientFromSession
 
-      Ok(threadDetailsView(form, recipient))
+      Ok(threadDetailsView(threadDetailsForm, recipient))
     }
 
   def onSubmit: Action[AnyContent] =
     Action { implicit request =>
-      val form      = threadDetailsFormProvider()
       val recipient = recipientFromSession
 
-      form
+      threadDetailsForm
         .bindFromRequest()
         .fold(
           formWithErrors => BadRequest(threadDetailsView(formWithErrors, recipient)),

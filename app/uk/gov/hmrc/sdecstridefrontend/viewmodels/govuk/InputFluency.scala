@@ -43,7 +43,7 @@ trait InputFluency {
       )
   }
 
-  implicit class FluentInput(input: Input) {
+  extension (input: Input) {
 
     def asEmail(): Input =
       input
