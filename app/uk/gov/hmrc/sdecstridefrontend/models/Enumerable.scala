@@ -40,9 +40,9 @@ object Enumerable {
             .map { s =>
               JsSuccess(s)
             }
-            .getOrElse(JsError("error.invalid"))
+            .getOrElse(JsError("Invalid value"))
         case _ =>
-          JsError("error.invalid")
+          JsError("Expected JSON String")
       }
 
     given writes[A: Enumerable]: Writes[A] =
