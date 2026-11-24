@@ -46,24 +46,24 @@ class ThreadDetailsFormProvider @Inject() extends Mappings {
         Valid
 
       case _ =>
-        Invalid("label.thread_details_response_date_error_future")
+        Invalid("label.the_response_date_must_be_in_the_future")
     }
 
   def apply(): Form[ThreadDetails] = Form(
     mapping(
-      "message" -> text("label.thread_details_error_message_required")
+      "message" -> text("label.enter_a_message")
         .verifying(
           maxLengthWithOverage(
             messageMaxLength,
-            "label.thread_details_error_message_length"
+            "label.message_must_be_1000_characters_or_less"
           )
         ),
       "responseDate" ->
         threadDetailsDate(
-          invalidKey = "label.thread_details_response_date_error_invalid",
-          allRequiredKey = "label.thread_details_response_date_error_all_required",
-          twoRequiredKey = "label.thread_details_response_date_error_two_required",
-          requiredKey = "label.thread_details_response_date_error_required"
+          invalidKey = "label.enter_a_valid_response_date",
+          allRequiredKey = "label.enter_the_day_month_and_year",
+          twoRequiredKey = "label.enter_the_missing_parts_of_the_date",
+          requiredKey = "label.enter_the_missing_part_of_the_date"
         ).verifying(responseDateMustBeTodayOrFuture)
     )(
       ThreadDetails.apply

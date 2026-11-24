@@ -22,8 +22,6 @@ import uk.gov.hmrc.govukfrontend.views.viewmodels.fieldset.{Fieldset, Legend}
 import uk.gov.hmrc.sdecstridefrontend.viewmodels.LegendSize
 import uk.gov.hmrc.sdecstridefrontend.viewmodels.LegendSize.ExtraLarge
 
-object fieldset extends FieldsetFluency
-
 trait FieldsetFluency {
 
   object FieldsetViewModel {

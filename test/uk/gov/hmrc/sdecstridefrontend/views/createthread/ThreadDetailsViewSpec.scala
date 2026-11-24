@@ -18,6 +18,7 @@ package uk.gov.hmrc.sdecstridefrontend.views.createthread
 
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
@@ -44,10 +45,10 @@ class ThreadDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPe
 
   private val recipient =
     RecipientDetails(
-      firstName = "John",
-      lastName = "Smith",
-      email = "john.smith@test.com",
-      phoneNumber = "07123456789",
+      firstName = "Test",
+      lastName = "User",
+      email = "test.user@example.com",
+      phoneNumber = "07000000000",
       nationalInsuranceNumber = "AA123456A",
       hasRelatedCase = false,
       caseReferenceNumber = None
@@ -66,8 +67,10 @@ class ThreadDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPe
       page.title() shouldBe pageTitle
     }
 
-    "show a Thread details h1" in {
-      page.getElementsByTag("h1").text() shouldBe pageTitle
+    "have a unique H1 heading" in {
+      val h1Elements: Elements = page.getElementsByTag("h1")
+      h1Elements.size() shouldBe 1
+      h1Elements.text() shouldBe pageTitle
     }
 
     "post the form to the submit route" in {
@@ -80,16 +83,16 @@ class ThreadDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPe
         routes.ThreadDetailsController.onSubmit().url
     }
 
-    "display the recipient name" in {
-      page.body().text() should include("John Smith")
-    }
+    "display the recipient details in the recipient banner" in {
 
-    "display the recipient email" in {
-      page.body().text() should include("john.smith@test.com")
-    }
+      val paragraphs =
+        page.select(".sdec-recipient-banner__details p.govuk-body")
 
-    "display the recipient phone number" in {
-      page.body().text() should include("07123456789")
+      paragraphs.size() shouldBe 3
+
+      paragraphs.get(0).text() shouldBe "Test User"
+      paragraphs.get(1).text() shouldBe "test.user@example.com"
+      paragraphs.get(2).text() shouldBe "07000000000"
     }
 
     "display the message field" in {

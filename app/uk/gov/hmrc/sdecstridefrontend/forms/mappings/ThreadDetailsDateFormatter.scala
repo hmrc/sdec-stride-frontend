@@ -101,7 +101,7 @@ class ThreadDetailsDateFormatter(
             Seq(
               FormError(
                 s"$key.year",
-                "label.thread_details_response_date_error_year_length"
+                "label.enter_the_year_using_4_digits"
               )
             )
           )
@@ -132,11 +132,17 @@ class ThreadDetailsDateFormatter(
             field
           }.get
 
+        val errorKey = missingField match {
+          case "day"   => "label.enter_the_day_part_of_the_date"
+          case "month" => "label.enter_the_month_part_of_the_date"
+          case "year"  => "label.enter_the_year_part_of_the_date"
+        }
+
         Left(
           List(
             FormError(
               s"$key.$missingField",
-              s"label.thread_details_response_date_error_${missingField}_required"
+              errorKey
             )
           )
         )

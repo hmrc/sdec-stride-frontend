@@ -43,11 +43,11 @@
           )
         },
     hint = Some(Hint(
-      content = Text(messages("label.thread_details_response_date_hint"))
+      content = Text(messages("label.enter_a_deadline_for_a_response_from_your_recipient"))
     )),
     fieldset = Some(Fieldset(
       legend = Some(Legend(
-        content = Text(messages("label.thread_details_response_date_legend")),
+        content = Text(messages("label.when_do_you_need_a_reply")),
         classes = "govuk-fieldset__legend--s"
       ))
     )),
@@ -86,17 +86,17 @@
   ))
 }
 
-@layout(pageTitle = messages("label.thread_details_title")) {
+@layout(pageTitle = messages("label.thread_details")) {
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">@messages("label.thread_details_caption")</span>
+      <span class="govuk-caption-l">@messages("label.create_new_thread")</span>
 
-      <h1 class="govuk-heading-l">@messages("label.thread_details_heading")</h1>
+      <h1 class="govuk-heading-l">@messages("label.thread_details")</h1>
 
       <div class="sdec-recipient-banner">
-        <h2 class="govuk-heading-s govuk-!-margin-bottom-2">@messages("label.thread_details_recipient_heading")</h2>
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-2">@messages("label.recipient_details")</h2>
         <div class="sdec-recipient-banner__details">
           <p class="govuk-body govuk-!-margin-bottom-0">@recipient.firstName @recipient.lastName</p>
           <p class="govuk-body govuk-!-margin-bottom-0">@recipient.email</p>
@@ -115,15 +115,15 @@
           @govukCharacterCount(
             CharacterCountViewModel(
               field = form("message"),
-              label = LabelViewModel(messages("label.thread_details_message")).withCssClass("govuk-label--s"),
+              label = LabelViewModel(messages("label.write_your_message")).withCssClass("govuk-label--s"),
               maxLength = 1000
-            ).withHint(HintViewModel(messages("label.thread_details_message_hint")))
+            ).withHint(HintViewModel(messages("label.use_this_space_to_request_any_files_or_information")))
           )
 
           @responseDateHtml
 
           @govukButton(
-            ButtonViewModel(messages("label.site_continue"))
+            ButtonViewModel(messages("label.continue"))
           )
     }
 
