@@ -97,7 +97,7 @@ class ThreadDetailsFormProviderSpec extends AnyWordSpec with Matchers {
       result.hasErrors shouldBe true
 
       result.errors.map(_.message) should contain(
-        "label.thread_details_responseDate_error_future"
+        "label.thread_details_response_date_error_future"
       )
     }
 

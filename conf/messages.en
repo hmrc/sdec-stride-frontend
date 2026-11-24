@@ -79,18 +79,18 @@ label.thread_details_message_hint = Use this space to request any files or infor
 label.thread_details_error_message_required = Enter a message
 label.thread_details_error_message_length = Message must be 1,000 characters or less. You have {0} characters too many
 
-label.thread_details_responseDate_legend = When do you need a reply?
-label.thread_details_responseDate_hint = Enter a deadline for a response from your recipient. Use a realistic deadline which gives them time to respond.
+label.thread_details_response_date_legend = When do you need a reply?
+label.thread_details_response_date_hint = Enter a deadline for a response from your recipient. Use a realistic deadline which gives them time to respond.
 
-label.thread_details_responseDate_error_all_required = Enter the day, month and year
-label.thread_details_responseDate_error_two_required = Enter the missing parts of the date
-label.thread_details_responseDate_error_required = Enter the missing part of the date
-label.thread_details_responseDate_error_day_required = Enter the day part of the date
-label.thread_details_responseDate_error_month_required = Enter the month part of the date
-label.thread_details_responseDate_error_year_required = Enter the year part of the date
-label.thread_details_responseDate_error_invalid = Enter a valid response date
-label.thread_details_responseDate_error_year_length = Enter the year using 4 digits
-label.thread_details_responseDate_error_future = The response date must be in the future
+label.thread_details_response_date_error_all_required = Enter the day, month and year
+label.thread_details_response_date_error_two_required = Enter the missing parts of the date
+label.thread_details_response_date_error_required = Enter the missing part of the date
+label.thread_details_response_date_error_day_required = Enter the day part of the date
+label.thread_details_response_date_error_month_required = Enter the month part of the date
+label.thread_details_response_date_error_year_required = Enter the year part of the date
+label.thread_details_response_date_error_invalid = Enter a valid response date
+label.thread_details_response_date_error_year_length = Enter the year using 4 digits
+label.thread_details_response_date_error_future = The response date must be in the future
 
 label.check_your_answers_title = Check your answers
 label.check_your_answers_caption = Create new thread
