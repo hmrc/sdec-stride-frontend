@@ -101,7 +101,7 @@ class RecipientDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAp
       conditional.select("label[for=caseReferenceNumber]").text() shouldBe "Enter a case reference number"
     }
 
-    "show a hint fro the case reference input" in {
+    "show a hint for the case reference input" in {
       page.select("#main-content #caseReferenceNumber-hint").text() shouldBe
         "Add a reference number linked to the case. This could be a National Insurance number, a customer ID number or the UTR reference"
     }

@@ -35,9 +35,9 @@ class RecipientDetailsFormProvider @Inject() extends Mappings {
         if data.get("hasRelatedCase").contains("true") then {
           data.get(key).map(_.trim).filter(_.nonEmpty) match {
             case None =>
-              Left(Seq(FormError(key, "label.enter_a_reference_number_related_to_the_case")))
-            case Some(v) if v.length > Validation.caseRefMaxLength =>
-              Left(Seq(FormError(key, "label.reference_number_must_be_30_characters_or_less")))
+              Left(Seq(FormError(key, "label.enter_a_case_reference_number")))
+            case Some(v) if !v.matches(Validation.caseRefRegex) =>
+              Left(Seq(FormError(key, "label.number_must_only_include_letters_a_to_z_and_numbers_0_to_9")))
             case Some(v) =>
               Right(Some(v))
           }
@@ -50,34 +50,38 @@ class RecipientDetailsFormProvider @Inject() extends Mappings {
   def apply(): Form[RecipientDetails] = Form(
     mapping(
       "firstName" -> text("label.enter_a_first_name").verifying(
-        maxLength(Validation.nameMaxLength, "label.first_name_must_be_100_characters_or_less")
+        firstError(
+          maxLength(Validation.nameMaxLength, "label.name_must_be_between_2_and_20_characters"),
+          minLength(Validation.nameMinLength, "label.name_must_be_between_2_and_20_characters"),
+          regexp(Validation.nameRegex, "label.name_must_only_include_letters_a_to_z_and_punctuation_")
+        )
       ),
       "lastName" -> text("label.enter_a_last_name")
         .verifying(
-          maxLength(Validation.nameMaxLength, "label.last_name_must_be_100_characters_or_less")
+          firstError(
+            maxLength(Validation.nameMaxLength, "label.name_must_be_between_2_and_20_characters"),
+            minLength(Validation.nameMinLength, "label.name_must_be_between_2_and_20_characters"),
+            regexp(Validation.nameRegex, "label.name_must_only_include_letters_a_to_z_and_punctuation_")
+          )
         ),
       "email" -> text("label.enter_an_email_address")
-        .verifying(regexp(Validation.emailRegex, "label.enter_an_email_address_in_the_correct_format")),
+        .verifying(regexp(Validation.emailRegex, "label.enter_an_email_address_in_the_correct_format_")),
       "phoneNumber" -> text("label.enter_a_mobile_number")
-        .verifying(regexp(Validation.phoneRegex, "label.enter_a_mobile_number_in_the_correct_format")),
+        .verifying(
+          firstError(
+            regexp(Validation.phoneRegex, "label.enter_a_mobile_number_in_the_correct_format_"),
+            regexp(Validation.phoneUkRegex, "label.enter_a_uk_mobile_number_")
+          )
+        ),
       "nationalInsuranceNumber" -> text(
         "label.enter_a_national_insurance_number"
       )
         .transform[String](_.replaceAll("\\s", "").toUpperCase, identity)
         .verifying(
-          firstError(
-            regexp(
-              Validation.ninoFormatRegex,
-              "label.enter_a_national_insurance_number_in_the_correct_format"
-            ),
-            regexp(
-              Validation.ninoValidRegex,
-              "label.enter_a_real_national_insurance_number"
-            )
-          )
+          regexp(Validation.ninoValidRegex, "label.enter_a_national_insurance_number_in_the_correct_format")
         )
         .transform[String](formatNino, identity),
-      "hasRelatedCase"      -> boolean("label.select_whether_this_relates_to_an_existing_case"),
+      "hasRelatedCase"      -> boolean("label.select_yes_or_no"),
       "caseReferenceNumber" -> caseReferenceMapping
     )(RecipientDetails.apply)(rd =>
       Some(
