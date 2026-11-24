@@ -23,7 +23,6 @@ label.workspace = Workspace
 label.create_new_thread = Create new thread
 
 label.recipient_details = Recipient details
-label.create_new_thread = Create new thread
 
 label.first_name = First name
 label.last_name = Last name
@@ -67,3 +66,25 @@ label.you_must_include_a_message_and_the_recipient_must_ = You must include a me
 label.you_must_include_a_file_and_a_message_and_the_recipient_ = You must include a file and a message and the recipient must respond with their file(s) and a message.
 
 label.select_what_you_need_to_do = Select what you need to do
+
+label.thread_details = Thread details
+label.write_your_message = Write your message
+label.use_this_space_to_request_any_files_or_information = Use this space to request any files or information from the recipient, or tell them why you've sent a file and what they need to do.
+
+label.enter_a_message = Enter a message
+label.message_must_be_1000_characters_or_less = Message must be 1,000 characters or less. You have {0} characters too many
+
+label.when_do_you_need_a_reply = When do you need a reply?
+label.enter_a_deadline_for_a_response_from_your_recipient = Enter a deadline for a response from your recipient. Use a realistic deadline which gives them time to respond.
+
+label.enter_the_day_month_and_year = Enter the day, month and year
+label.enter_the_missing_parts_of_the_date = Enter the missing parts of the date
+label.enter_the_missing_part_of_the_date = Enter the missing part of the date
+label.enter_the_day_part_of_the_date = Enter the day part of the date
+label.enter_the_month_part_of_the_date = Enter the month part of the date
+label.enter_the_year_part_of_the_date = Enter the year part of the date
+label.enter_a_valid_response_date = Enter a valid response date
+label.enter_the_year_using_4_digits = Enter the year using 4 digits
+label.the_response_date_must_be_in_the_future = The response date must be in the future
+
+label.check_your_answers = Check your answers

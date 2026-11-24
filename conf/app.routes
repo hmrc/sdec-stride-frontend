@@ -10,6 +10,11 @@ GET         /                                       uk.gov.hmrc.sdecstridefronte
 GET         /create-thread/recipient-details        uk.gov.hmrc.sdecstridefrontend.controllers.createthread.RecipientDetailsController.onPageLoad()
 POST        /create-thread/recipient-details        uk.gov.hmrc.sdecstridefrontend.controllers.createthread.RecipientDetailsController.onSubmit()
 
+GET         /create-thread/thread-details           uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadDetailsController.onPageLoad()
+POST        /create-thread/thread-details           uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadDetailsController.onSubmit()
+
+GET         /create-thread/check-your-answers       uk.gov.hmrc.sdecstridefrontend.controllers.createthread.CheckYourAnswersController.onPageLoad()
+
 GET         /create-thread/thread-type              uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadTypeController.onPageLoad()
 POST        /create-thread/thread-type              uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadTypeController.onSubmit()
 

@@ -1,0 +1,134 @@
+@*
+ * Copyright 2026 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import uk.gov.hmrc.sdecstridefrontend.views.html.Layout
+@import uk.gov.hmrc.sdecstridefrontend.models.ThreadDetails
+@import uk.gov.hmrc.sdecstridefrontend.models.RecipientDetails
+
+@this(
+  layout: Layout,
+  formHelper: FormWithCSRF,
+  govukErrorSummary: GovukErrorSummary,
+  govukCharacterCount: GovukCharacterCount,
+  govukButton: GovukButton,
+  govukDateInput: GovukDateInput
+)
+
+@(form: Form[ThreadDetails], recipient: RecipientDetails)(implicit request: Request[_], messages: Messages)
+
+@responseDateHtml = {
+  @govukDateInput(DateInput(
+    id = "responseDate",
+    errorMessage =
+      form("responseDate").error
+        .orElse(form("responseDate.day").error)
+        .orElse(form("responseDate.month").error)
+        .orElse(form("responseDate.year").error)
+        .map { error =>
+          ErrorMessage(
+            content = Text(messages(error.message, error.args*))
+          )
+        },
+    hint = Some(Hint(
+      content = Text(messages("label.enter_a_deadline_for_a_response_from_your_recipient"))
+    )),
+    fieldset = Some(Fieldset(
+      legend = Some(Legend(
+        content = Text(messages("label.when_do_you_need_a_reply")),
+        classes = "govuk-fieldset__legend--s"
+      ))
+    )),
+    items = Seq(
+      InputItem(
+        name = "responseDate.day",
+        classes = s"govuk-input--width-2${if form("responseDate.day").hasErrors then " govuk-input--error" else ""}",
+        value = form("responseDate.day").value,
+        label = Some("Day"),
+        attributes = Map(
+          "maxlength" -> "2",
+          "inputmode" -> "numeric"
+        )
+      ),
+      InputItem(
+        name = "responseDate.month",
+        classes = s"govuk-input--width-2${if form("responseDate.month").hasErrors then " govuk-input--error" else ""}",
+        value = form("responseDate.month").value,
+        label = Some("Month"),
+        attributes = Map(
+          "maxlength" -> "2",
+          "inputmode" -> "numeric"
+        )
+      ),
+      InputItem(
+        name = "responseDate.year",
+        classes = s"govuk-input--width-4${if form("responseDate.year").hasErrors then " govuk-input--error" else ""}",
+        value = form("responseDate.year").value,
+        label = Some("Year"),
+        attributes = Map(
+          "maxlength" -> "4",
+          "inputmode" -> "numeric"
+        )
+      )
+    )
+  ))
+}
+
+@layout(pageTitle = messages("label.thread_details")) {
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">@messages("label.create_new_thread")</span>
+
+      <h1 class="govuk-heading-l">@messages("label.thread_details")</h1>
+
+      <div class="sdec-recipient-banner">
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-2">@messages("label.recipient_details")</h2>
+        <div class="sdec-recipient-banner__details">
+          <p class="govuk-body govuk-!-margin-bottom-0">@recipient.firstName @recipient.lastName</p>
+          <p class="govuk-body govuk-!-margin-bottom-0">@recipient.email</p>
+          <p class="govuk-body govuk-!-margin-bottom-0">@recipient.phoneNumber</p>
+        </div>
+      </div>
+
+      @formHelper(action = uk.gov.hmrc.sdecstridefrontend.controllers.createthread.routes.ThreadDetailsController.onSubmit()) {
+
+          @if(form.errors.nonEmpty) {
+            @govukErrorSummary(
+              ErrorSummaryViewModel(form)
+            )
+          }
+
+          @govukCharacterCount(
+            CharacterCountViewModel(
+              field = form("message"),
+              label = LabelViewModel(messages("label.write_your_message")).withCssClass("govuk-label--s"),
+              maxLength = 1000
+            ).withHint(HintViewModel(messages("label.use_this_space_to_request_any_files_or_information")))
+          )
+
+          @responseDateHtml
+
+          @govukButton(
+            ButtonViewModel(messages("label.continue"))
+          )
+    }
+
+    </div>
+
+  </div>
+
+}

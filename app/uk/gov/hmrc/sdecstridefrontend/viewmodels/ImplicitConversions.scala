@@ -22,8 +22,6 @@ import uk.gov.hmrc.govukfrontend.views.viewmodels.summarylist.Key
 
 import scala.language.implicitConversions
 
-object implicits extends ImplicitConversions
-
 trait ImplicitConversions {
 
   given stringToText(using messages: Messages): Conversion[String, Text] =

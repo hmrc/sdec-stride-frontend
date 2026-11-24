@@ -31,20 +31,87 @@ class ThreadTypeControllerSpec extends AnyWordSpec with Matchers with GuiceOneAp
     new GuiceApplicationBuilder()
       .build()
 
-  private val fakeRequest = FakeRequest("GET", "/sdec-stride-frontend")
-  private val controller  = app.injector.instanceOf[ThreadTypeController]
+  private val controller = app.injector.instanceOf[ThreadTypeController]
 
-  "GET /" should {
+  "onPageLoad" should {
 
     "return 200" in {
-      val result = controller.onPageLoad(fakeRequest)
+      val result =
+        controller.onPageLoad(
+          FakeRequest("GET", "/create-thread/thread-type")
+        )
+
       status(result) shouldBe Status.OK
     }
 
     "return HTML" in {
-      val result = controller.onPageLoad(fakeRequest)
+      val result =
+        controller.onPageLoad(
+          FakeRequest("GET", "/create-thread/thread-type")
+        )
+
       contentType(result) shouldBe Some("text/html")
       charset(result)     shouldBe Some("utf-8")
+    }
+  }
+
+  "onSubmit" should {
+
+    "return BAD_REQUEST when no thread type is selected" in {
+      val result =
+        controller.onSubmit(
+          FakeRequest("POST", "/create-thread/thread-type")
+        )
+
+      status(result) shouldBe Status.BAD_REQUEST
+    }
+
+    "redirect to ThreadDetails when Request is selected" in {
+      val result =
+        controller.onSubmit(
+          FakeRequest("POST", "/create-thread/thread-type")
+            .withFormUrlEncodedBody(
+              "threadType" -> "Request"
+            )
+        )
+
+      status(result) shouldBe Status.SEE_OTHER
+
+      redirectLocation(result) shouldBe Some(
+        routes.ThreadDetailsController.onPageLoad().url
+      )
+    }
+
+    "redirect back to ThreadType when Send is selected" in {
+      val result =
+        controller.onSubmit(
+          FakeRequest("POST", "/create-thread/thread-type")
+            .withFormUrlEncodedBody(
+              "threadType" -> "Send"
+            )
+        )
+
+      status(result) shouldBe Status.SEE_OTHER
+
+      redirectLocation(result) shouldBe Some(
+        routes.ThreadTypeController.onPageLoad().url
+      )
+    }
+
+    "redirect back to ThreadType when SendAndRequest is selected" in {
+      val result =
+        controller.onSubmit(
+          FakeRequest("POST", "/create-thread/thread-type")
+            .withFormUrlEncodedBody(
+              "threadType" -> "SendAndRequest"
+            )
+        )
+
+      status(result) shouldBe Status.SEE_OTHER
+
+      redirectLocation(result) shouldBe Some(
+        routes.ThreadTypeController.onPageLoad().url
+      )
     }
   }
 }
