@@ -47,7 +47,7 @@ class ThreadDetailsController @Inject() (
       phoneNumber = request.session.get("phoneNumber").getOrElse(""),
       nationalInsuranceNumber = request.session.get("nationalInsuranceNumber").getOrElse(""),
       hasRelatedCase = request.session.get("hasRelatedCase").exists(_.toBoolean),
-      caseReferenceNumber = request.session.get("caseReferenceNumber")
+      caseReferenceNumber = request.session.get("caseReferenceNumber").filter(_.nonEmpty)
     )
 
   def onPageLoad: Action[AnyContent] =

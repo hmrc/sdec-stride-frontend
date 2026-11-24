@@ -69,31 +69,31 @@ label.you_must_include_a_file_and_a_message_and_the_recipient_ = You must includ
 
 label.select_what_you_need_to_do = Select what you need to do
 
-label.threadDetails_title = Thread details
-label.threadDetails_caption = Create new thread
-label.threadDetails_heading = Thread details
-label.threadDetails_recipient_heading = Recipients details
-label.threadDetails_message = Write your message
-label.threadDetails_message_hint = Use this space to request any files or information from the recipient, or tell them why you've sent a file and what they need to do.
+label.thread_details_title = Thread details
+label.thread_details_caption = Create new thread
+label.thread_details_heading = Thread details
+label.thread_details_recipient_heading = Recipients details
+label.thread_details_message = Write your message
+label.thread_details_message_hint = Use this space to request any files or information from the recipient, or tell them why you've sent a file and what they need to do.
 
-label.threadDetails_error_message_required = Enter a message
-label.threadDetails_error_message_length = Message must be 1,000 characters or less. You have {0} characters too many
+label.thread_details_error_message_required = Enter a message
+label.thread_details_error_message_length = Message must be 1,000 characters or less. You have {0} characters too many
 
-label.threadDetails_responseDate_legend = When do you need a reply?
-label.threadDetails_responseDate_hint = Enter a deadline for a response from your recipient. Use a realistic deadline which gives them time to respond.
+label.thread_details_responseDate_legend = When do you need a reply?
+label.thread_details_responseDate_hint = Enter a deadline for a response from your recipient. Use a realistic deadline which gives them time to respond.
 
-label.threadDetails_responseDate_error_all_required = Enter the day, month and year
-label.threadDetails_responseDate_error_two_required = Enter the missing parts of the date
-label.threadDetails_responseDate_error_required = Enter the missing part of the date
-label.threadDetails_responseDate_error_day_required = Enter the day part of the date
-label.threadDetails_responseDate_error_month_required = Enter the month part of the date
-label.threadDetails_responseDate_error_year_required = Enter the year part of the date
-label.threadDetails_responseDate_error_invalid = Enter a valid response date
-label.threadDetails_responseDate_error_year_length = Enter the year using 4 digits
-label.threadDetails_responseDate_error_future = The response date must be in the future
+label.thread_details_responseDate_error_all_required = Enter the day, month and year
+label.thread_details_responseDate_error_two_required = Enter the missing parts of the date
+label.thread_details_responseDate_error_required = Enter the missing part of the date
+label.thread_details_responseDate_error_day_required = Enter the day part of the date
+label.thread_details_responseDate_error_month_required = Enter the month part of the date
+label.thread_details_responseDate_error_year_required = Enter the year part of the date
+label.thread_details_responseDate_error_invalid = Enter a valid response date
+label.thread_details_responseDate_error_year_length = Enter the year using 4 digits
+label.thread_details_responseDate_error_future = The response date must be in the future
 
-label.checkYourAnswers_title = Check your answers
-label.checkYourAnswers_caption = Create new thread
-label.checkYourAnswers_heading = Check your answers
+label.check_your_answers_title = Check your answers
+label.check_your_answers_caption = Create new thread
+label.check_your_answers_heading = Check your answers
 
 label.site_continue = Continue

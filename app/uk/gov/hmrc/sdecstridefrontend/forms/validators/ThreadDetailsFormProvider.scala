@@ -40,31 +40,31 @@ class ThreadDetailsFormProvider @Inject() extends Mappings {
         Invalid(errorKey, str.length - maximum)
     }
 
-  private val responseDateMustBeInFuture: Constraint[LocalDate] =
+  private val responseDateMustBeTodayOrFuture: Constraint[LocalDate] =
     Constraint {
       case date if date.isAfter(LocalDate.now().minusDays(1)) =>
         Valid
 
       case _ =>
-        Invalid("label.threadDetails_responseDate_error_future")
+        Invalid("label.thread_details_responseDate_error_future")
     }
 
   def apply(): Form[ThreadDetails] = Form(
     mapping(
-      "message" -> text("label.threadDetails_error_message_required")
+      "message" -> text("label.thread_details_error_message_required")
         .verifying(
           maxLengthWithOverage(
             messageMaxLength,
-            "label.threadDetails_error_message_length"
+            "label.thread_details_error_message_length"
           )
         ),
       "responseDate" ->
         threadDetailsDate(
-          invalidKey = "label.threadDetails_responseDate_error_invalid",
-          allRequiredKey = "label.threadDetails_responseDate_error_all_required",
-          twoRequiredKey = "label.threadDetails_responseDate_error_two_required",
-          requiredKey = "label.threadDetails_responseDate_error_required"
-        ).verifying(responseDateMustBeInFuture)
+          invalidKey = "label.thread_details_responseDate_error_invalid",
+          allRequiredKey = "label.thread_details_responseDate_error_all_required",
+          twoRequiredKey = "label.thread_details_responseDate_error_two_required",
+          requiredKey = "label.thread_details_responseDate_error_required"
+        ).verifying(responseDateMustBeTodayOrFuture)
     )(
       ThreadDetails.apply
     )(threadDetails =>

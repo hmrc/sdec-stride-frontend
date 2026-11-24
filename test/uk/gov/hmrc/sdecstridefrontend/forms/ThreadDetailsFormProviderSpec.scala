@@ -61,7 +61,7 @@ class ThreadDetailsFormProviderSpec extends AnyWordSpec with Matchers {
       result.hasErrors shouldBe true
 
       result.error("message").value.message shouldBe
-        "label.threadDetails_error_message_required"
+        "label.thread_details_error_message_required"
     }
 
     "fail when message exceeds 1000 characters" in {
@@ -78,7 +78,7 @@ class ThreadDetailsFormProviderSpec extends AnyWordSpec with Matchers {
       result.hasErrors shouldBe true
 
       result.error("message").value.message shouldBe
-        "label.threadDetails_error_message_length"
+        "label.thread_details_error_message_length"
     }
 
     "fail when response date is in the past" in {
@@ -97,7 +97,7 @@ class ThreadDetailsFormProviderSpec extends AnyWordSpec with Matchers {
       result.hasErrors shouldBe true
 
       result.errors.map(_.message) should contain(
-        "label.threadDetails_responseDate_error_future"
+        "label.thread_details_responseDate_error_future"
       )
     }
 

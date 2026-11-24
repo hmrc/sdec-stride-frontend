@@ -43,11 +43,11 @@
           )
         },
     hint = Some(Hint(
-      content = Text(messages("label.threadDetails_responseDate_hint"))
+      content = Text(messages("label.thread_details_responseDate_hint"))
     )),
     fieldset = Some(Fieldset(
       legend = Some(Legend(
-        content = Text(messages("label.threadDetails_responseDate_legend")),
+        content = Text(messages("label.thread_details_responseDate_legend")),
         classes = "govuk-fieldset__legend--s"
       ))
     )),
@@ -86,17 +86,17 @@
   ))
 }
 
-@layout(pageTitle = messages("label.threadDetails_title")) {
+@layout(pageTitle = messages("label.thread_details_title")) {
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">@messages("label.threadDetails_caption")</span>
+      <span class="govuk-caption-l">@messages("label.thread_details_caption")</span>
 
-      <h1 class="govuk-heading-l">@messages("label.threadDetails_heading")</h1>
+      <h1 class="govuk-heading-l">@messages("label.thread_details_heading")</h1>
 
       <div class="sdec-recipient-banner">
-        <h2 class="govuk-heading-s govuk-!-margin-bottom-2">@messages("label.threadDetails_recipient_heading")</h2>
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-2">@messages("label.thread_details_recipient_heading")</h2>
         <div class="sdec-recipient-banner__details">
           <p class="govuk-body govuk-!-margin-bottom-0">@recipient.firstName @recipient.lastName</p>
           <p class="govuk-body govuk-!-margin-bottom-0">@recipient.email</p>
@@ -115,9 +115,9 @@
           @govukCharacterCount(
             CharacterCountViewModel(
               field = form("message"),
-              label = LabelViewModel(messages("label.threadDetails_message")).withCssClass("govuk-label--s"),
+              label = LabelViewModel(messages("label.thread_details_message")).withCssClass("govuk-label--s"),
               maxLength = 1000
-            ).withHint(HintViewModel(messages("label.threadDetails_message_hint")))
+            ).withHint(HintViewModel(messages("label.thread_details_message_hint")))
           )
 
           @responseDateHtml
