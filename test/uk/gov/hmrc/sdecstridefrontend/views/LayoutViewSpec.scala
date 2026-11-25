@@ -25,7 +25,7 @@ import play.api.i18n.MessagesApi
 import play.api.test.FakeRequest
 import play.twirl.api.Html
 import uk.gov.hmrc.sdecstridefrontend.config.AppConfig
-import uk.gov.hmrc.sdecstridefrontend.views.html.{InsufficientRoles, Layout}
+import uk.gov.hmrc.sdecstridefrontend.views.html.Layout
 
 class LayoutViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
   private val view     = app.injector.instanceOf[Layout]

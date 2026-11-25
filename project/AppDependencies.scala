@@ -16,7 +16,7 @@ object AppDependencies {
     "uk.gov.hmrc"       %% "bootstrap-test-play-30"  % bootstrapVersion % Test,
     "org.jsoup"          % "jsoup"                   % "1.24.1"         % Test,
     "uk.gov.hmrc.mongo" %% "hmrc-mongo-test-play-30" % hmrcMongoVersion % Test,
-    "org.scalatestplus"       %% "scalacheck-1-17"         % "3.2.18.0" % Test
+    "org.scalatestplus" %% "scalacheck-1-17"         % "3.2.18.0"       % Test
   )
 
   val it: Seq[ModuleID] = Seq.empty

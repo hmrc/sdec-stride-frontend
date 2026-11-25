@@ -26,7 +26,7 @@ class UserAnswersSpec extends AnyFreeSpec with Matchers with ScalaCheckPropertyC
   "get" - {
 
     "return value " in {
-      val userAnswers = UserAnswers("ID")
+      UserAnswers("ID")
     }
   }
 

@@ -19,7 +19,6 @@ package uk.gov.hmrc.sdecstridefrontend.forms
 import org.scalatest.OptionValues
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import play.api.libs.json.{JsString, JsSuccess}
 import uk.gov.hmrc.sdecstridefrontend.helpers.TestEnum
 import uk.gov.hmrc.sdecstridefrontend.helpers.TestEnum.{TestFailure, TestSuccess}
 

@@ -24,7 +24,7 @@ import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.i18n.MessagesApi
 import play.api.test.FakeRequest
 import uk.gov.hmrc.sdecstridefrontend.config.AppConfig
-import uk.gov.hmrc.sdecstridefrontend.views.html.{ErrorTemplate, InsufficientRoles}
+import uk.gov.hmrc.sdecstridefrontend.views.html.ErrorTemplate
 
 class ErrorTemplateViewSpec extends AnyWordSpec with Matchers with GuiceOneAppPerSuite {
   private val view     = app.injector.instanceOf[ErrorTemplate]
