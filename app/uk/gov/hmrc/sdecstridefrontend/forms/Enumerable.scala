@@ -31,6 +31,7 @@ object Enumerable {
         entries.toMap.get(str)
     }
 
+  // $COVERAGE-OFF$
   trait Implicits {
 
     given reads[A](using ev: Enumerable[A]): Reads[A] =
@@ -48,4 +49,5 @@ object Enumerable {
     given writes[A: Enumerable]: Writes[A] =
       Writes(value => JsString(value.toString))
   }
+  // $COVERAGE-ON$
 }

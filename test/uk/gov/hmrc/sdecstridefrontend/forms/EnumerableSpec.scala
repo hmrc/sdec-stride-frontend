@@ -23,7 +23,6 @@ import play.api.libs.json.{JsString, JsSuccess}
 import uk.gov.hmrc.sdecstridefrontend.helpers.TestEnum
 import uk.gov.hmrc.sdecstridefrontend.helpers.TestEnum.{TestFailure, TestSuccess}
 
-
 class EnumerableSpec extends AnyWordSpec with Matchers with OptionValues {
 
   "Enumerable" should {
@@ -39,4 +38,3 @@ class EnumerableSpec extends AnyWordSpec with Matchers with OptionValues {
     }
   }
 }
-
