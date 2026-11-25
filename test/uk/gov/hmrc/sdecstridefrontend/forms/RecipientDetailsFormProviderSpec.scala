@@ -23,6 +23,8 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.FormError
 
+import scala.collection.immutable.Seq
+
 class RecipientDetailsFormProviderSpec
     extends AnyWordSpec
     with Matchers
@@ -45,9 +47,9 @@ class RecipientDetailsFormProviderSpec
       boundForm.hasErrors shouldBe false
     }
 
-    "return a Form with errors if given a firstName longer than 100 characters" in {
+    "return a Form with errors if given a firstName that is longer than 20 characters" in {
       val formData = Map(
-        "firstName" -> "NebuchadnezzarAtaxerxesConstantineNebuchadnezzarAtaxerxesConstantineNebuchadnezzarAtaxerxesConstantine",
+        "firstName"               -> "NebuchadnezzarAtaxerxes",
         "lastName"                -> "Doe",
         "email"                   -> "john.doe@hmrc.com",
         "phoneNumber"             -> "07777777777",
@@ -59,14 +61,14 @@ class RecipientDetailsFormProviderSpec
 
       boundForm.hasErrors          shouldBe true
       boundForm.error("firstName") shouldBe Some(
-        FormError("firstName", List("label.first_name_must_be_100_characters_or_less"), List(100))
+        FormError("firstName", List("label.name_must_be_between_2_and_20_characters"), Seq(20))
       )
     }
 
-    "return a Form with errors if given lastName longer than 100 characters" in {
+    "return a Form with errors if given lastName longer than 20 characters" in {
       val formData = Map(
-        "firstName" -> "John",
-        "lastName" -> "SimpsonWellingtonEisenhowerSimpsonWellingtonEisenhowerSimpsonWellingtonEisenhowerSimpsonWellingtonEisenhower",
+        "firstName"               -> "John",
+        "lastName"                -> "SimpsonWellingtonJone",
         "email"                   -> "john.doe@hmrc.com",
         "phoneNumber"             -> "07777777777",
         "nationalInsuranceNumber" -> "AB123456C",
@@ -77,7 +79,7 @@ class RecipientDetailsFormProviderSpec
 
       boundForm.hasErrors         shouldBe true
       boundForm.error("lastName") shouldBe Some(
-        FormError("lastName", List("label.last_name_must_be_100_characters_or_less"), List(100))
+        FormError("lastName", Seq("label.name_must_be_between_2_and_20_characters"), Seq(20))
       )
     }
 
@@ -97,8 +99,8 @@ class RecipientDetailsFormProviderSpec
       boundForm.error("email") shouldBe Some(
         FormError(
           "email",
-          List("label.enter_an_email_address_in_the_correct_format"),
-          List(
+          List("label.enter_an_email_address_in_the_correct_format_"),
+          Seq(
             """^[a-zA-Z0-9.!#$%&’'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$"""
           )
         )
@@ -121,30 +123,8 @@ class RecipientDetailsFormProviderSpec
       boundForm.error("phoneNumber") shouldBe Some(
         FormError(
           "phoneNumber",
-          List("label.enter_a_mobile_number_in_the_correct_format"),
-          List("""^[0-9 +().-]{9,16}$""")
-        )
-      )
-    }
-
-    "return a Form with errors if given invalid nationalInsuranceNumber in wrong alpha-numeric format" in {
-      val formData = Map(
-        "firstName"               -> "John",
-        "lastName"                -> "Doe",
-        "email"                   -> "john.doe@hmrc.com",
-        "phoneNumber"             -> "07777777777",
-        "nationalInsuranceNumber" -> "ABBBB456C", // 3rd, 4th, 5th characters must be numbers instead of letters here
-        "hasRelatedCase"          -> "false"
-      )
-      val recipientDetailsFormProvider = RecipientDetailsFormProvider()
-      val boundForm                    = recipientDetailsFormProvider().bind(formData)
-
-      boundForm.hasErrors                        shouldBe true
-      boundForm.error("nationalInsuranceNumber") shouldBe Some(
-        FormError(
-          "nationalInsuranceNumber",
-          List("label.enter_a_national_insurance_number_in_the_correct_format"),
-          List("^[A-Z]{2}[0-9]{6}[A-D]$")
+          List("label.enter_a_mobile_number_in_the_correct_format_"),
+          Seq("""^[0-9 +().-]{9,16}$""")
         )
       )
     }
@@ -165,8 +145,8 @@ class RecipientDetailsFormProviderSpec
       boundForm.error("nationalInsuranceNumber") shouldBe Some(
         FormError(
           "nationalInsuranceNumber",
-          List("label.enter_a_real_national_insurance_number"),
-          List(
+          List("label.enter_a_national_insurance_number_in_the_correct_format"),
+          Seq(
             "^([ACEHJLMOPRSWXY][A-CEGHJ-NPR-TW-Z]|B[A-CEHJ-NPR-TW-Z]|G[ACEGHJ-NPR-TW-Z]|[KT][A-CEGHJ-MPR-TW-Z]|N[A-CEGHJL-NPR-SW-Z]|Z[A-CEGHJ-NPR-TW-Y])[0-9]{6}[A-D]$"
           )
         )
@@ -186,7 +166,7 @@ class RecipientDetailsFormProviderSpec
       val boundForm                    = recipientDetailsFormProvider().bind(formData)
 
       boundForm.hasErrors               shouldBe true
-      boundForm.error("hasRelatedCase") shouldBe Some(FormError("hasRelatedCase", List("error.boolean"), List()))
+      boundForm.error("hasRelatedCase") shouldBe Some(FormError("hasRelatedCase", List("error.boolean"), Seq()))
     }
 
     "return a Form with errors if given missing firstName" in {
@@ -201,7 +181,7 @@ class RecipientDetailsFormProviderSpec
       val boundForm                    = recipientDetailsFormProvider().bind(formData)
 
       boundForm.hasErrors          shouldBe true
-      boundForm.error("firstName") shouldBe Some(FormError("firstName", List("label.enter_a_first_name"), List()))
+      boundForm.error("firstName") shouldBe Some(FormError("firstName", List("label.enter_a_first_name"), Seq()))
     }
 
     "return a Form with errors if given missing lastName" in {
@@ -216,7 +196,7 @@ class RecipientDetailsFormProviderSpec
       val boundForm                    = recipientDetailsFormProvider().bind(formData)
 
       boundForm.hasErrors         shouldBe true
-      boundForm.error("lastName") shouldBe Some(FormError("lastName", List("label.enter_a_last_name"), List()))
+      boundForm.error("lastName") shouldBe Some(FormError("lastName", List("label.enter_a_last_name"), Seq()))
     }
 
     "return a Form with errors if given missing email" in {
@@ -231,7 +211,7 @@ class RecipientDetailsFormProviderSpec
       val boundForm                    = recipientDetailsFormProvider().bind(formData)
 
       boundForm.hasErrors      shouldBe true
-      boundForm.error("email") shouldBe Some(FormError("email", List("label.enter_an_email_address"), List()))
+      boundForm.error("email") shouldBe Some(FormError("email", List("label.enter_an_email_address"), Seq()))
     }
 
     "return a Form with errors if given missing phoneNumber" in {
@@ -247,7 +227,7 @@ class RecipientDetailsFormProviderSpec
 
       boundForm.hasErrors            shouldBe true
       boundForm.error("phoneNumber") shouldBe Some(
-        FormError("phoneNumber", List("label.enter_a_mobile_number"), List())
+        FormError("phoneNumber", List("label.enter_a_mobile_number"), Seq())
       )
     }
 
@@ -264,7 +244,7 @@ class RecipientDetailsFormProviderSpec
 
       boundForm.hasErrors                        shouldBe true
       boundForm.error("nationalInsuranceNumber") shouldBe Some(
-        FormError("nationalInsuranceNumber", List("label.enter_a_national_insurance_number"), List())
+        FormError("nationalInsuranceNumber", List("label.enter_a_national_insurance_number"), Seq())
       )
     }
 
@@ -281,7 +261,7 @@ class RecipientDetailsFormProviderSpec
 
       boundForm.hasErrors               shouldBe true
       boundForm.error("hasRelatedCase") shouldBe Some(
-        FormError("hasRelatedCase", List("label.select_whether_this_relates_to_an_existing_case"), List())
+        FormError("hasRelatedCase", List("label.select_yes_or_no"), Seq())
       )
     }
 
@@ -293,7 +273,7 @@ class RecipientDetailsFormProviderSpec
         "phoneNumber"             -> "07777777777",
         "nationalInsuranceNumber" -> "AB123456C",
         "hasRelatedCase"          -> "true",
-        "caseReferenceNumber" -> "THIS_IS_VALID" // only requirement for caseReferenceNumber is not exceed 30 characters
+        "caseReferenceNumber" -> "ThisIsAValidCase1234" // only requirement for caseReferenceNumber is not exceed 30 characters
       )
       val recipientDetailsFormProvider = RecipientDetailsFormProvider()
       val boundForm                    = recipientDetailsFormProvider().bind(formData)
@@ -316,11 +296,15 @@ class RecipientDetailsFormProviderSpec
 
       boundForm.hasErrors                    shouldBe true
       boundForm.error("caseReferenceNumber") shouldBe Some(
-        FormError("caseReferenceNumber", List("label.enter_a_reference_number_related_to_the_case"), List())
+        FormError(
+          "caseReferenceNumber",
+          List("label.enter_a_case_reference_number"),
+          Seq.empty[String]
+        )
       )
     }
 
-    "return a Form with errors if form data with hasRelatedCase=true but caseReferenceNumber exceeds max length" in {
+    "return a Form with errors if form data with hasRelatedCase=true but caseReferenceNumber that is not purely alphaNumeric" in {
       val formData = Map(
         "firstName"               -> "John",
         "lastName"                -> "Doe",
@@ -328,14 +312,18 @@ class RecipientDetailsFormProviderSpec
         "phoneNumber"             -> "07777777777",
         "nationalInsuranceNumber" -> "AB123456C",
         "hasRelatedCase"          -> "true",
-        "caseReferenceNumber"     -> "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        "caseReferenceNumber"     -> "This_Is_Invalid%^&$£"
       )
       val recipientDetailsFormProvider = RecipientDetailsFormProvider()
       val boundForm                    = recipientDetailsFormProvider().bind(formData)
 
       boundForm.hasErrors                    shouldBe true
       boundForm.error("caseReferenceNumber") shouldBe Some(
-        FormError("caseReferenceNumber", List("label.reference_number_must_be_30_characters_or_less"), List())
+        FormError(
+          "caseReferenceNumber",
+          List("label.number_must_only_include_letters_a_to_z_and_numbers_0_to_9"),
+          Seq()
+        )
       )
     }
   }

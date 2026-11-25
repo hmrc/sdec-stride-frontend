@@ -24,6 +24,7 @@ import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import uk.gov.hmrc.sdecstridefrontend.forms.ThreadTypeFormProvider
 import uk.gov.hmrc.sdecstridefrontend.forms.models.ThreadType
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.ThreadTypeView
+import uk.gov.hmrc.sdecstridefrontend.forms.ThreadTypeOptions
 
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
