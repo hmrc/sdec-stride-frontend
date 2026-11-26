@@ -1,22 +1,21 @@
 # microservice specific routes
 
-->          /hmrc-frontend                          hmrcfrontend.Routes
-GET         /assets/*file                           controllers.Assets.versioned(path = "/public", file: Asset)
-->          /hmrc-frontend                          hmrcfrontend.Routes
-GET         /assets/*file                           controllers.Assets.versioned(path = "/public", file: Asset)
-GET         /insufficient-roles                     uk.gov.hmrc.sdecstridefrontend.controllers.InsufficientRolesController.get
-GET         /                                       uk.gov.hmrc.sdecstridefrontend.controllers.WorkspaceController.onPageLoad
+->          /hmrc-frontend                           hmrcfrontend.Routes
 
-GET         /create-thread/recipient-details        uk.gov.hmrc.sdecstridefrontend.controllers.createthread.RecipientDetailsController.onPageLoad()
-POST        /create-thread/recipient-details        uk.gov.hmrc.sdecstridefrontend.controllers.createthread.RecipientDetailsController.onSubmit()
+GET         /                                        uk.gov.hmrc.sdecstridefrontend.controllers.WorkspaceController.onPageLoad
 
-GET         /create-thread/thread-details           uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadDetailsController.onPageLoad()
-POST        /create-thread/thread-details           uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadDetailsController.onSubmit()
+GET         /insufficient-roles                      uk.gov.hmrc.sdecstridefrontend.controllers.InsufficientRolesController.get
 
-GET         /create-thread/check-your-answers       uk.gov.hmrc.sdecstridefrontend.controllers.createthread.CheckYourAnswersController.onPageLoad()
+# Create thread
+GET         /create-thread/recipient-details         uk.gov.hmrc.sdecstridefrontend.controllers.createthread.RecipientDetailsController.onPageLoad()
+POST        /create-thread/recipient-details         uk.gov.hmrc.sdecstridefrontend.controllers.createthread.RecipientDetailsController.onSubmit()
+GET         /create-thread/thread-type               uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadTypeController.onPageLoad()
+POST        /create-thread/thread-type               uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadTypeController.onSubmit()
+GET         /create-thread/thread-details            uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadDetailsController.onPageLoad()
+POST        /create-thread/thread-details            uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadDetailsController.onSubmit()
+GET         /create-thread/check-your-answers        uk.gov.hmrc.sdecstridefrontend.controllers.createthread.CheckYourAnswersController.onPageLoad()
+POST        /create-thread/check-your-answers        uk.gov.hmrc.sdecstridefrontend.controllers.createthread.CheckYourAnswersController.onSubmit()
 
-GET         /create-thread/thread-type              uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadTypeController.onPageLoad()
-POST        /create-thread/thread-type              uk.gov.hmrc.sdecstridefrontend.controllers.createthread.ThreadTypeController.onSubmit()
+GET         /development-in-progress                 uk.gov.hmrc.sdecstridefrontend.controllers.DevelopmentInProgressController.onPageLoad()
 
-
-
+GET         /assets/*file                            controllers.Assets.versioned(path = "/public", file: Asset)

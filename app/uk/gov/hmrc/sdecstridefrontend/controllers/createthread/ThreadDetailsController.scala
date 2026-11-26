@@ -23,6 +23,7 @@ import play.api.mvc.*
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import uk.gov.hmrc.sdecstridefrontend.forms.validators.ThreadDetailsFormProvider
 import uk.gov.hmrc.sdecstridefrontend.models.{RecipientDetails, ThreadDetails}
+import uk.gov.hmrc.sdecstridefrontend.session.CreateThreadSession
 import uk.gov.hmrc.sdecstridefrontend.views.html.createthread.ThreadDetailsView
 
 import javax.inject.{Inject, Singleton}
@@ -50,25 +51,27 @@ class ThreadDetailsController @Inject() (
       caseReferenceNumber = request.session.get("caseReferenceNumber").filter(_.nonEmpty)
     )
 
-  def onPageLoad: Action[AnyContent] =
-    Action { implicit request =>
-      val recipient = recipientFromSession
+  def onPageLoad: Action[AnyContent] = Action { request =>
+    given Request[AnyContent] = request
 
-      Ok(threadDetailsView(threadDetailsForm, recipient))
-    }
+    val recipient = recipientFromSession
 
-  def onSubmit: Action[AnyContent] =
-    Action { implicit request =>
-      val recipient = recipientFromSession
+    Ok(threadDetailsView(threadDetailsForm, recipient))
+  }
 
-      threadDetailsForm
-        .bindFromRequest()
-        .fold(
-          formWithErrors => BadRequest(threadDetailsView(formWithErrors, recipient)),
-          _ =>
-            Redirect(
-              routes.CheckYourAnswersController.onPageLoad()
-            )
-        )
-    }
+  def onSubmit: Action[AnyContent] = Action { request =>
+    given Request[AnyContent] = request
+
+    val recipient = recipientFromSession
+
+    threadDetailsForm
+      .bindFromRequest()
+      .fold(
+        formWithErrors => BadRequest(threadDetailsView(formWithErrors, recipient)),
+        threadDetails =>
+          Redirect(routes.CheckYourAnswersController.onPageLoad())
+            .addingToSession(CreateThreadSession.threadDetailsEntries(threadDetails)*)
+      )
+  }
+
 }

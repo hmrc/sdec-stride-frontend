@@ -30,4 +30,5 @@ class TestStrideAuth @Inject() (staff: StaffAuth, actionBuilder: DefaultActionBu
   ): Action[AnyContent] = actionBuilder.async { request =>
     action(staff, request)
   }
+
 }

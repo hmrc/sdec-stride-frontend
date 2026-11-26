@@ -34,7 +34,7 @@ import scala.concurrent.{ExecutionContext, Future}
 trait StrideAuthAlgebra {
   def authorisedFromStride(
     action: (StaffAuth, Request[AnyContent]) => Future[Result]
-  )(implicit ec: ExecutionContext): Action[AnyContent]
+  )(using ec: ExecutionContext): Action[AnyContent]
 }
 
 class StrideAuth @Inject() (
@@ -49,10 +49,10 @@ class StrideAuth @Inject() (
     with Logging {
 
   /*
-   * For using Retrivals.name for SRIDE users, see
+   * For using Retrievals.name for SRIDE users, see
    * https://confluence.tools.tax.service.gov.uk/spaces/SDEC/pages/1381269850/Extracting+External+Internal+User+Name
    */
-  override def authorisedFromStride(action: (StaffAuth, Request[AnyContent]) => Future[Result])(implicit
+  override def authorisedFromStride(action: (StaffAuth, Request[AnyContent]) => Future[Result])(using
     ec: ExecutionContext
   ): Action[AnyContent] =
     actionBuilder.async { request =>

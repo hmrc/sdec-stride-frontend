@@ -22,16 +22,15 @@ import uk.gov.hmrc.sdecstridefrontend.models.UserAnswers
 import scala.util.{Success, Try}
 
 sealed trait Query {
-
   def path: JsPath
 }
 
 trait Gettable[A] extends Query
 
 trait Settable[A] extends Query {
-
   def cleanup(value: Option[A], userAnswers: UserAnswers): Try[UserAnswers] =
     Success(userAnswers)
 
-  def cleanupBeforeSettingValue(value: Option[A], userAnswers: UserAnswers): Try[UserAnswers] = Success(userAnswers)
+  def cleanupBeforeSettingValue(value: Option[A], userAnswers: UserAnswers): Try[UserAnswers] =
+    Success(userAnswers)
 }

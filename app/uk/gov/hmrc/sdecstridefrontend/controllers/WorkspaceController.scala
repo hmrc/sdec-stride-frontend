@@ -41,7 +41,7 @@ class WorkspaceController @Inject() (
   def onPageLoad: Action[AnyContent] =
     strideAuth.authorisedFromStride { (staff, request) =>
       logger.info(s"Staff: $staff")
-      // Placeholer for now as we will need this for calls to backend API
+      // Placeholder for now as we will need this for calls to backend API
       given HeaderCarrier       = HeaderCarrierConverter.fromRequestAndSession(request, request.session)
       given Request[AnyContent] = request
       Future.successful(Ok(workspaceView()))

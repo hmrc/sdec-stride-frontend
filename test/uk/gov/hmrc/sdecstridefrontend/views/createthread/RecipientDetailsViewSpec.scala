@@ -41,8 +41,7 @@ class RecipientDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAp
 
   private def form: Form[RecipientDetails] = formProvider()
 
-  private lazy val page: Document =
-    Jsoup.parse(view(form)(using request, messages).body)
+  private lazy val page: Document = Jsoup.parse(view(form)(using request, messages).body)
 
   private val textInputs = Seq(
     ("firstName", "First name"),
@@ -61,7 +60,7 @@ class RecipientDetailsViewSpec extends AnyWordSpec with Matchers with GuiceOneAp
       page.title() shouldBe s"$pageTitle - $serviceName - GOV.UK"
     }
 
-    "show a Recipient details h1" in {
+    "show a unique Recipient details h1" in {
       val h1Elements: Elements = page.getElementsByTag("h1")
       h1Elements.size() shouldBe 1
       h1Elements.text() shouldBe pageTitle
