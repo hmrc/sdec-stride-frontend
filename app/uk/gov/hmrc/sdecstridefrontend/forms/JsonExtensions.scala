@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.sdecstridefrontend.models
+package uk.gov.hmrc.sdecstridefrontend.forms
 
 import play.api.libs.json.*
 
@@ -79,8 +79,9 @@ extension (jsValue: JsValue) {
       case ((n: KeyPathNode) :: Nil, value: JsObject) if !value.keys.contains(n.key) =>
         JsError("cannot find value at path")
       case ((n: IdxPathNode) :: Nil, value: JsArray) => removeIndexNode(n, value)
-      case ((_: IdxPathNode) :: Nil, _)              => JsError(s"cannot remove an index on $jsValue")
-      case ((_: KeyPathNode) :: Nil, _)              =>
+      case ((_: IdxPathNode) :: Nil, _)              =>
+        JsError(s"cannot remove an index on $jsValue") // this code is never reached for some reason
+      case ((_: KeyPathNode) :: Nil, _) =>
         JsError(s"cannot remove a key on $jsValue")
       case (first :: second :: rest, oldValue) =>
 

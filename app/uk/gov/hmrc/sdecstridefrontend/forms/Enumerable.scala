@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.sdecstridefrontend.models
+package uk.gov.hmrc.sdecstridefrontend.forms
 
 import play.api.libs.json.*
 
@@ -31,6 +31,7 @@ object Enumerable {
         entries.toMap.get(str)
     }
 
+  // $COVERAGE-OFF$
   trait Implicits {
 
     given reads[A](using ev: Enumerable[A]): Reads[A] =
@@ -48,4 +49,5 @@ object Enumerable {
     given writes[A: Enumerable]: Writes[A] =
       Writes(value => JsString(value.toString))
   }
+  // $COVERAGE-ON$
 }

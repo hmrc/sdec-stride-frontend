@@ -15,6 +15,7 @@
  */
 
 package uk.gov.hmrc.sdecstridefrontend.controllers.createthread
+
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
@@ -31,20 +32,146 @@ class RecipientDetailsControllerSpec extends AnyWordSpec with Matchers with Guic
       .build()
 
   private val fakeRequest = FakeRequest("GET", "/sdec-stride-frontend")
-  private val controller  = app.injector.instanceOf[RecipientDetailsController]
+    .withFormUrlEncodedBody(
+      "firstName" -> "John",
+      "lastName"  -> "Doe"
+    )
+  private val controller = app.injector.instanceOf[RecipientDetailsController]
 
-  "GET /" should {
+  controller
 
-    "return 200" in {
+  "onPageLoad" should {
+
+    "return 200 with html response when sent GET" in {
       val result = controller.onPageLoad(fakeRequest)
-      status(result) shouldBe Status.OK
-    }
-
-    "return HTML" in {
-      val result = controller.onPageLoad(fakeRequest)
+      status(result)      shouldBe Status.OK
       contentType(result) shouldBe Some("text/html")
       charset(result)     shouldBe Some("utf-8")
     }
   }
 
+  "onSubmit" should {
+    val fakeRequest = FakeRequest("POST", "/sdec-stride-frontend")
+
+    "return 303 See Other when sent a POST with valid form" in {
+      val fakeRequestWithFormData = fakeRequest
+        .withFormUrlEncodedBody(
+          "firstName"               -> "John",
+          "lastName"                -> "Doe",
+          "email"                   -> "john.doe@hmrc.com",
+          "phoneNumber"             -> "07777777777",
+          "nationalInsuranceNumber" -> "AB123456C",
+          "hasRelatedCase"          -> "false"
+        )
+      val result = controller.onSubmit()(fakeRequestWithFormData)
+      status(result)           shouldBe Status.SEE_OTHER
+      redirectLocation(result) shouldBe Some("/sdec-stride-frontend/create-thread/thread-type")
+    }
+
+    "return 400 if given bad NI Number" in {
+      val fakeRequestWithFormData = fakeRequest
+        .withFormUrlEncodedBody(
+          "firstName"               -> "John",
+          "lastName"                -> "Doe",
+          "email"                   -> "john.doe@hmrc.com",
+          "phoneNumber"             -> "07777777777",
+          "nationalInsuranceNumber" -> "AB1234_56C",
+          "hasRelatedCase"          -> "false"
+        )
+      val result = controller.onSubmit()(fakeRequestWithFormData)
+      status(result) shouldBe Status.BAD_REQUEST
+    }
+
+    "return 400 if given bad phone Number" in {
+      val fakeRequestWithFormData = fakeRequest
+        .withFormUrlEncodedBody(
+          "firstName"               -> "John",
+          "lastName"                -> "Doe",
+          "email"                   -> "john.doe@hmrc.com",
+          "phoneNumber"             -> "07777777_=*",
+          "nationalInsuranceNumber" -> "AB123456C",
+          "hasRelatedCase"          -> "false"
+        )
+      val result = controller.onSubmit()(fakeRequestWithFormData)
+      status(result) shouldBe Status.BAD_REQUEST
+    }
+
+    "return 400 if firstName is missing" in {
+      val fakeRequestWithFormData = fakeRequest
+        .withFormUrlEncodedBody(
+          "lastName"                -> "Doe",
+          "email"                   -> "john.doe@hmrc.com",
+          "phoneNumber"             -> "07777777777",
+          "nationalInsuranceNumber" -> "AB123456C",
+          "hasRelatedCase"          -> "false"
+        )
+      val result = controller.onSubmit()(fakeRequestWithFormData)
+      status(result) shouldBe Status.BAD_REQUEST
+    }
+
+    "return 400 if last name is missing" in {
+      val fakeRequestWithFormData = fakeRequest
+        .withFormUrlEncodedBody(
+          "firstName"               -> "John",
+          "email"                   -> "john.doe@hmrc.com",
+          "phoneNumber"             -> "07777777777",
+          "nationalInsuranceNumber" -> "AB1234_56C",
+          "hasRelatedCase"          -> "false"
+        )
+      val result = controller.onSubmit()(fakeRequestWithFormData)
+      status(result) shouldBe Status.BAD_REQUEST
+    }
+
+    "return 400 if email is missing" in {
+      val fakeRequestWithFormData = fakeRequest
+        .withFormUrlEncodedBody(
+          "firstName"               -> "John",
+          "lastName"                -> "Doe",
+          "phoneNumber"             -> "07777777777",
+          "nationalInsuranceNumber" -> "AB123456C",
+          "hasRelatedCase"          -> "false"
+        )
+      val result = controller.onSubmit()(fakeRequestWithFormData)
+      status(result) shouldBe Status.BAD_REQUEST
+    }
+
+    "return 400 if phone number is missing" in {
+      val fakeRequestWithFormData = fakeRequest
+        .withFormUrlEncodedBody(
+          "firstName"               -> "John",
+          "lastName"                -> "Doe",
+          "email"                   -> "john.doe@hmrc.com",
+          "nationalInsuranceNumber" -> "AB123456C",
+          "hasRelatedCase"          -> "false"
+        )
+      val result = controller.onSubmit()(fakeRequestWithFormData)
+      status(result) shouldBe Status.BAD_REQUEST
+    }
+
+    "return 400 if nationalInsuranceNumber is missing" in {
+      val fakeRequestWithFormData = fakeRequest
+        .withFormUrlEncodedBody(
+          "firstName"      -> "John",
+          "lastName"       -> "Doe",
+          "email"          -> "john.doe@hmrc.com",
+          "phoneNumber"    -> "07777777777",
+          "hasRelatedCase" -> "false"
+        )
+      val result = controller.onSubmit()(fakeRequestWithFormData)
+      status(result) shouldBe Status.BAD_REQUEST
+    }
+
+    "return 400 if hasRelatedCase is missing" in {
+      val fakeRequestWithFormData = fakeRequest
+        .withFormUrlEncodedBody(
+          "firstName"               -> "John",
+          "lastName"                -> "Doe",
+          "email"                   -> "john.doe@hmrc.com",
+          "phoneNumber"             -> "07777777777",
+          "nationalInsuranceNumber" -> "AB123456C"
+        )
+      val result = controller.onSubmit()(fakeRequestWithFormData)
+      status(result) shouldBe Status.BAD_REQUEST
+    }
+  }
 }

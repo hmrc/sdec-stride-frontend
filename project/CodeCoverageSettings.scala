@@ -12,27 +12,28 @@ object CodeCoverageSettings {
     ".*Routes.*",
     "testOnly.*",
     "testOnlyDoNotUseInAppConf.*",
-    ".*.views.html.*",
-    ".*models.*",
-    ".*viewmodels.*",
-    ".*queries.*"
+    ".*.models.*",
+    ".*.viewsmodels.*",
+    ".*.validators.*"
   )
 
   private val excludedFiles: Seq[String] = Seq(
     ".*Algebra",
     ".*ViewUtils",
-    ".*ErrorTemplate",
-    ".*Layout",
     ".*Heading",
-    ".*forms.mappings.Formatters",
-    ".*forms.mappings.Constraints",
-    ".*forms.mappings.Mappings"
+    ".*ThreadTypeFormProvider",
+    ".*ThreadTypeOptions",
+    ".*Constraints",
+    ".*Formatters",
+    ".*Query",
+    ".*Implicits",
+    ".*UserAnswers"
   )
 
   val settings: Seq[Setting[_]] = Seq(
     ScoverageKeys.coverageExcludedPackages := excludedPackages.mkString(";"),
     ScoverageKeys.coverageExcludedFiles := excludedFiles.mkString(";"),
-    ScoverageKeys.coverageMinimumStmtTotal := 79,
+    ScoverageKeys.coverageMinimumStmtTotal := 90,
     ScoverageKeys.coverageFailOnMinimum := true,
     ScoverageKeys.coverageHighlighting := true
   )
