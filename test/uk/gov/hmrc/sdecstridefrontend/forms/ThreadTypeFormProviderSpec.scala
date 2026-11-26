@@ -19,7 +19,7 @@ package uk.gov.hmrc.sdecstridefrontend.forms
 import org.scalatest.OptionValues.convertOptionToValuable
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import uk.gov.hmrc.sdecstridefrontend.models.{ThreadType, ThreadTypeOptions}
+import uk.gov.hmrc.sdecstridefrontend.forms.models.ThreadType
 
 class ThreadTypeFormProviderSpec extends AnyWordSpec with Matchers {
 

@@ -22,7 +22,7 @@ import org.scalatest.wordspec.AnyWordSpec
 import play.api.Configuration
 import uk.gov.hmrc.mongo.test.DefaultPlayMongoRepositorySupport
 import uk.gov.hmrc.sdecstridefrontend.config.AppConfig
-import uk.gov.hmrc.sdecstridefrontend.models.UserAnswers
+import uk.gov.hmrc.sdecstridefrontend.forms.UserAnswers
 
 import java.time.{Clock, Instant, ZoneOffset}
 import scala.concurrent.ExecutionContext.Implicits.global
